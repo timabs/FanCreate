@@ -1,0 +1,72 @@
+.all-sys-details-options {
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+
+  height: fit-content;
+  width: 35%;
+}
+.sys-info-dividers {
+  align-self: flex-start;
+  align-items: center;
+}
+.sys-details-bar {
+  display: flex;
+  width: 95%;
+  align-self: flex-start;
+  margin-left: 0.5rem;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  justify-self: flex-start;
+}
+.sys-details-right {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  gap: 0.35rem;
+}
+.battery-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.35rem;
+}
+.phone-internet-section {
+  width: fit-content;
+  height: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.35rem;
+}
+.internet-icon {
+  display: flex;
+  align-items: center;
+  margin-top: 0.1rem;
+}
+.wifi-levels {
+  display: flex;
+  align-self: flex-start;
+}
+.wifi-bars-img {
+  height: 1rem;
+  align-items: center;
+}
+.signal {
+  display: flex;
+  align-items: center;
+  margin-top: 0.1rem;
+  justify-content: center;
+  height: auto;
+}
+.cell-bars-img {
+  height: 1rem;
+  width: 1rem;
+  object-fit: scale-down;
+  border-radius: 0 !important;
+  align-self: center;
+}
+@media (max-width: 567px) {
+  .sys-info-dividers {
+    width: 100%;
+  }
+}

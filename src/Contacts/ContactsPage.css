@@ -1,0 +1,40 @@
+.contact-row {
+  justify-content: space-around;
+}
+.contact-col > img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.text-info {
+  font-size: 1.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact-col-buttons {
+  justify-self: flex-end;
+}
+.contact-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.contact-button {
+  animation: pulse 2s infinite;
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 576px) {
+  .contact-col.col-sm-2 {
+    width: 17%;
+  }
+  .contact-col.col-7 {
+    width: 50%;
+  }
+  .text-info {
+    font-size: 100%;
+  }
+}

@@ -1,0 +1,24 @@
+.battery-icon {
+  width: 25px;
+  height: 15px;
+  border: 1.5px solid black;
+  position: relative;
+  border-radius: 0.25rem !important;
+  overflow: hidden;
+}
+
+.battery-icon::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: -6px;
+  width: 6px;
+  height: 12px;
+  background: black;
+}
+
+.battery-level {
+  height: 100%;
+  background-color: black;
+  border-radius: 0.25rem !important;
+}

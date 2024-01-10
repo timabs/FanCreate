@@ -1,0 +1,281 @@
+.tools-pages {
+  display: flex;
+  height: 85%;
+  width: 100%;
+  position: relative;
+}
+
+.chat-tools__primary__parent,
+.soc-med-tools__primary__parent,
+.screen-tools__primary__parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+.soc-med-tools__primary__parent,
+.screen-tools__primary__parent {
+  display: flex;
+  position: absolute;
+}
+.setting-label {
+  display: flex;
+  font-size: 100%;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  font-weight: bold;
+  align-items: center;
+}
+.options {
+  grid-template-columns: repeat(3, auto);
+  gap: 1.5rem;
+  align-items: center;
+  width: 60%;
+  font-size: 100%;
+  font-family: "Apple";
+  justify-content: flex-end;
+}
+.green-text {
+  color: #259c4d;
+}
+.blue-text {
+  color: #2766ab;
+}
+.green-text,
+.blue-text,
+.options-btns {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #f9f7f8 !important;
+  border: 2px #b4a1b5 solid !important;
+}
+.green-text,
+.blue-text,
+.color-picker-align {
+  background-color: #f9f7f8 !important;
+  border: 2px #b4a1b5 solid !important;
+}
+.color-picker-align {
+  color: #2d3033;
+}
+.options-btns {
+  color: #3204a3;
+}
+
+input[type="color"] {
+  cursor: pointer;
+}
+.ml-1 {
+  margin-left: 0.5rem;
+}
+.img-tool-button {
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+}
+.img-tool-button:hover {
+  box-shadow: 3px 4px 5px 0.5px #2d272e;
+}
+.bg-img-tools {
+  position: relative;
+  width: 5%;
+  height: 5%;
+}
+.mini-phone-div {
+  height: 60%;
+  width: 5%;
+  position: relative;
+}
+.mini-phone {
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+.mini-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: cover;
+}
+
+.ant-slider {
+  width: 40%;
+}
+.ant-slider:hover .ant-slider-handle::after {
+  box-shadow: 0 0 0 2px #3204a3;
+}
+.ant-picker {
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  align-self: center !important;
+  margin-left: 1rem;
+}
+.ant-space-item {
+  color: #252c34;
+}
+.time-tool-div {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .tabs > p {
+    font-size: 120%;
+  }
+  .setting-label > span {
+    font-size: 100%;
+  }
+  .options {
+    width: fit-content;
+    gap: 1rem;
+  }
+  .options > button {
+    width: 100%;
+    font-size: 80%;
+    height: 2.5rem;
+    padding: 0.25rem !important;
+    line-height: 1.25 !important ;
+  }
+  .options > label {
+    font-size: 80%;
+  }
+  .bg-img-tools {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .mini-phone-div {
+    height: 80%;
+    width: 7.5%;
+  }
+  input[type="color"] {
+    width: 2rem;
+    height: 1.5rem;
+  }
+  .ant-slider {
+    width: 36.5%;
+  }
+}
+@media (min-width: 577px) {
+  .bg-img-tools {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .setting-label > span {
+    font-size: 1rem;
+  }
+  .options {
+    width: fit-content;
+  }
+  .options > button {
+    width: 100%;
+    font-size: 85%;
+    height: 2.5rem;
+    padding: 0.35rem !important;
+  }
+  input[type="color"] {
+    width: 2rem;
+    height: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .setting-label > span {
+    font-size: 0.85rem;
+  }
+  .options {
+    gap: 0.5rem;
+    width: fit-content;
+    font-size: 85%;
+  }
+  .options > button {
+    padding: 0.25rem !important;
+    line-height: 1.2;
+  }
+  input[type="color"] {
+    width: 2rem;
+    height: 1.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .setting-label > span {
+    font-size: 1rem;
+  }
+  .options {
+    width: fit-content;
+    gap: 1.25rem;
+    font-size: 0.8rem;
+  }
+  .options > * {
+    font-size: 0.8rem;
+  }
+  .mini-phone {
+    font-size: unset !important;
+  }
+}
+@media (min-width: 1150px) {
+  .setting-label > span {
+    font-size: 100%;
+  }
+  .options > button {
+    font-size: 100%;
+  }
+}
+@media (min-width: 1400px) {
+  .options {
+    font-size: 90%;
+  }
+  .options > button {
+    padding-inline: 0.3rem !important;
+    padding-block: 0.3rem !important;
+    font-size: 100%;
+  }
+  .options > label {
+    font-size: 105%;
+  }
+  .setting-label > span {
+    font-size: 1.25rem;
+  }
+  .bg-img-tools {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+@media (min-width: 1550px) {
+  .options {
+    font-size: 100%;
+  }
+  .options > button {
+    padding-inline: 0.725rem !important;
+    padding-block: 0.375rem !important;
+    font-size: 100%;
+  }
+  .options > label {
+    font-size: 97.5%;
+  }
+  .bg-img-tools {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .mini-phone-div {
+    height: 70%;
+    width: 6%;
+  }
+  .tool-text {
+    font-size: 1rem;
+  }
+  .sys-info-dividers {
+    border-bottom: 2px solid #6d21c4;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,14 @@
+.epr-emoji-native {
+  --epr-emoji-size: 1rem !important;
+  --epr-emoji-gap: 0.25rem !important;
+}
+.emoji-picker-div {
+  height: 200px;
+  width: 200px;
+  overflow: auto;
+  position: absolute;
+}
+.EmojiPickerReact {
+  width: fit-content !important;
+  height: fit-content !important;
+}

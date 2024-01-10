@@ -1,0 +1,35 @@
+.group-chat-form {
+  background-color: #f2f1f6;
+  z-index: 5;
+}
+.fa-pen-to-square,
+.fa-cloud-arrow-up {
+  position: absolute;
+  right: 30%;
+  top: 10%;
+}
+.fa-pen-to-square.edit-gc-names {
+  position: unset;
+  margin-left: 0.5rem;
+}
+.gc-user-card {
+  list-style: none;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.35rem;
+  align-items: center;
+}
+.gc-pfp {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+.gc-pfp > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}

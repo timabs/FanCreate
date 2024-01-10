@@ -1,0 +1,53 @@
+@media (max-width: 767px) {
+  .texters-col {
+    width: 12.5% !important;
+  }
+  .portraits,
+  .portraits > img {
+    width: 4vw !important;
+    height: 4vw !important;
+  }
+  .text-icon-div > div,
+  .text-icon-div > div > i,
+  .users-icon-div,
+  .users-icon-div > i {
+    width: 6vw !important;
+    height: 6vw !important;
+    font-size: 3.5vw !important;
+  }
+}
+@media (min-width: 767px) {
+  .portraits,
+  .portraits > img {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+  .text-icon-div > div,
+  .text-icon-div > div > i,
+  .users-icon-div,
+  .users-icon-div > i {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 1rem !important;
+  }
+}
+@media (min-width: 1400px) {
+  .portraits,
+  .portraits > img {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+  .text-icon-div > div,
+  .text-icon-div > div > i,
+  .users-icon-div,
+  .users-icon-div > i {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 1.5rem !important;
+  }
+  .portraits.draggable > img {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 1.5rem !important;
+  }
+}

@@ -1,0 +1,9 @@
+.back-button {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+}
+.to-gc-info {
+  grid-row: 1;
+  grid-column: 3;
+}
