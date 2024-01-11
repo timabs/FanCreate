@@ -3,6 +3,7 @@ import "./LoginSignUpModal.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setLoggedIn, setUsername } from "../redux/auth";
+const apiUrl = "https://fancreate-backend.onrender.com";
 
 const LoginSignupModal = ({ isOpen, setOpen }) => {
   const dispatch = useDispatch();
@@ -77,7 +78,10 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
         return;
       }
       try {
-        const response = await axios.post("/api/v1/auth/register", formData);
+        const response = await axios.post(
+          `${apiUrl}/api/v1/auth/register`,
+          formData
+        );
         localStorage.setItem("token", response.data.token);
         setOpen(false);
         setFormData({
@@ -96,7 +100,10 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
       //login implementation
       e.preventDefault();
       try {
-        const response = await axios.post("/api/v1/auth/login", formData);
+        const response = await axios.post(
+          `${apiUrl}/api/v1/auth/login`,
+          formData
+        );
         localStorage.setItem("token", response.data.token);
         setOpen(false);
         setFormData({

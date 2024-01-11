@@ -108,7 +108,7 @@ export default function MessagesScreen() {
                 <img
                   className="convo-pfp"
                   alt="default chat"
-                  src={conv.participants[1].pfp}
+                  src={conv?.participants[1]?.pfp}
                 ></img>
               ) : (
                 <div></div>

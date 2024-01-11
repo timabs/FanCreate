@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const apiUrl = "https://fancreate-backend.onrender.com";
 const initialState = {
   contactsArr: [],
   contactToEdit: null,
@@ -11,7 +12,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`/api/v1/contacts/`, {
+      const response = await axios.get(`${apiUrl}/api/v1/contacts/`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       return response.data.contacts;
@@ -26,7 +27,7 @@ export const createContact = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `/api/v1/contacts/`,
+        `${apiUrl}/api/v1/contacts/`,
         { contact },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -45,7 +46,7 @@ export const editContact = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const response = await axios.patch(
-        `/api/v1/contacts/`,
+        `${apiUrl}/api/v1/contacts/`,
         { contactToEdit, newContactData },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -61,7 +62,7 @@ export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   async ({ contactId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`/api/v1/contacts/delete`, {
+      const response = await axios.post(`${apiUrl}/api/v1/contacts/delete`, {
         contactId: contactId,
       });
       return response.data.deletedContact;

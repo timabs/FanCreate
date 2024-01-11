@@ -30,6 +30,7 @@ import { setLoggedIn, setUsername } from "./redux/auth";
 import { logoutUser } from "./redux/actions";
 import { ConfigProvider } from "antd";
 import GroupChat from "./Contacts/GroupChat/GroupChatContactScreen";
+const apiUrl = "https://fancreate-backend.onrender.com";
 
 function NavBar() {
   const [isOpen, setOpen] = useState(false);
@@ -50,9 +51,12 @@ function NavBar() {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const response = await axios.post("/api/v1/auth/validate-token", {
-            token,
-          });
+          const response = await axios.post(
+            `${apiUrl}/api/v1/auth/validate-token`,
+            {
+              token,
+            }
+          );
           if (response.data.valid) {
             dispatch(setLoggedIn(true));
             dispatch(setUsername(response.data.userData.username));

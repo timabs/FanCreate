@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import dayjs from "dayjs";
+const apiUrl = "https://fancreate-backend.onrender.com";
 const format = "h:mm A";
 const initialState = {
   youBubbleColor: "#00e34d",
@@ -32,7 +33,7 @@ export const updateSysDetails = createAsyncThunk(
         cellSignal: cellState,
       };
       const response = await axios.patch(
-        `/api/v1/conversations/${conversationId}/sys-details`,
+        `${apiUrl}/api/v1/conversations/${conversationId}/sys-details`,
         { conversationId: conversationId, sysDetails: sysDetailsObj }
       );
       return response.data;

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { deleteImgFromCloud, getCloudinaryImgId } from "../utils/cloudinary";
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = "https://fancreate-backend.onrender.com";
 
 const initialState = {
   users: [{ first: "me", pfp: null, defaultTexter: true, _id: "1" }],
