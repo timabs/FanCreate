@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { deleteImgFromCloud, getCloudinaryImgId } from "../utils/cloudinary";
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const initialState = {
   users: [{ first: "me", pfp: null, defaultTexter: true, _id: "1" }],
   conversations: [],
@@ -45,7 +47,7 @@ export const fetchConversations = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`/api/v1/conversations/`, {
+      const response = await axios.get(`${apiUrl}/api/v1/conversations/`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       return response.data.conversations;
@@ -59,9 +61,12 @@ export const fetchActiveConvo = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`api/v1/conversations/setActive/`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
+      const response = await axios.get(
+        `${apiUrl}/api/v1/conversations/setActive/`,
+        {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        }
+      );
       return response.data.activeConvo;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -73,7 +78,7 @@ export const fetchMessages = createAsyncThunk(
   async (conversationId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `/api/v1/conversations/${conversationId}/messages`
+        `${apiUrl}/api/v1/conversations/${conversationId}/messages`
       );
       return response.data;
     } catch (error) {
@@ -87,7 +92,7 @@ export const createConversation = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `/api/v1/conversations/`,
+        `${apiUrl}/api/v1/conversations/`,
         { participants },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -104,7 +109,7 @@ export const deleteConvo = createAsyncThunk(
   "messages/deleteConvo",
   async (conversationId, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`/api/v1/conversations`, {
+      const response = await axios.delete(`${apiUrl}/api/v1/conversations`, {
         data: { conversationId },
       });
       return response.data.deletedConvo;
@@ -119,7 +124,7 @@ export const setActiveConvo = createAsyncThunk(
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `/api/v1/conversations/setActive`,
+        `${apiUrl}/api/v1/conversations/setActive`,
         { conversationId },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -138,7 +143,7 @@ export const createMessage = createAsyncThunk(
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `/api/v1/messages/`,
+        `${apiUrl}/api/v1/messages/`,
         { conversationId, messageObj },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -156,7 +161,7 @@ export const editMsg = createAsyncThunk(
 
   async ({ msgId, newMsgData }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`/api/v1/messages/${msgId}`, {
+      const response = await axios.patch(`${apiUrl}/api/v1/messages/${msgId}`, {
         newMsgData: newMsgData,
       });
       return response.data.updatedMsg;
@@ -169,9 +174,12 @@ export const editSender = createAsyncThunk(
   "messages/editSender",
   async ({ msgId, newSenderData }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`/api/v1/messages/${msgId}/sender`, {
-        newSenderData: newSenderData,
-      });
+      const response = await axios.patch(
+        `${apiUrl}/api/v1/messages/${msgId}/sender`,
+        {
+          newSenderData: newSenderData,
+        }
+      );
       return response.data.updatedSender;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -182,9 +190,12 @@ export const deleteMsg = createAsyncThunk(
   "messages/deleteMsg",
   async ({ msgId, conversationId }, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`/api/v1/messages/${msgId}`, {
-        data: { conversationId },
-      });
+      const response = await axios.delete(
+        `${apiUrl}/api/v1/messages/${msgId}`,
+        {
+          data: { conversationId },
+        }
+      );
       return response.data.deletedMsg;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -196,7 +207,7 @@ export const fetchParticipants = createAsyncThunk(
   async (conversationId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `/api/v1/conversations/${conversationId}/users`
+        `${apiUrl}/api/v1/conversations/${conversationId}/users`
       );
       return response.data;
     } catch (error) {
@@ -208,8 +219,7 @@ export const addUserToConvo = createAsyncThunk(
   "messages/addUserToConvo",
   async ({ conversationId, contact }, { rejectWithValue }) => {
     try {
-      //maybe put convo id in params? research pros/cons
-      const response = await axios.patch(`/api/v1/conversations`, {
+      const response = await axios.patch(`${apiUrl}/api/v1/conversations`, {
         conversationId,
         contact,
       });
@@ -224,9 +234,8 @@ export const deleteUserFromConvo = createAsyncThunk(
   "messages/deleteUserFromConvo",
   async ({ conversationId, participantId }, { rejectWithValue }) => {
     try {
-      //maybe put convo id in params? research pros/cons
       const response = await axios.delete(
-        `/api/v1/conversations/${conversationId}/${participantId}`
+        `${apiUrl}/api/v1/conversations/${conversationId}/${participantId}`
       );
       return response.data;
     } catch (error) {
@@ -238,7 +247,7 @@ export const addEmojiReact = createAsyncThunk(
   "messages/addEmojiReact",
   async ({ msgId, emojiCode }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`/api/v1/messages/emoji/`, {
+      const response = await axios.post(`${apiUrl}/api/v1/messages/emoji/`, {
         msgId: msgId,
         emojiCode: emojiCode,
       });
@@ -254,7 +263,7 @@ export const editGroupChatName = createAsyncThunk(
   async ({ conversationId, gcName }, { rejectWithValue }) => {
     try {
       const response = await axios.patch(
-        `/api/v1/conversations/${conversationId}`,
+        `${apiUrl}/api/v1/conversations/${conversationId}`,
         {
           gcName: gcName,
         }
@@ -270,7 +279,7 @@ export const editGroupChatPfp = createAsyncThunk(
   async ({ conversationId, gcPfp }, { rejectWithValue }) => {
     try {
       const response = await axios.patch(
-        `/api/v1/conversations/${conversationId}/pfp`,
+        `${apiUrl}/api/v1/conversations/${conversationId}/pfp`,
         {
           gcPfp: gcPfp,
         }

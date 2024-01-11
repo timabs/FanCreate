@@ -41,7 +41,11 @@ export default function MessagesScreen() {
       const fetchConvosRes = await dispatch(fetchConversations());
       const fetchedConversationsArray = fetchConvosRes.payload;
       if (fetchConversations.fulfilled.match(fetchConvosRes)) {
-        for (let index = 0; index < fetchedConversationsArray.length; index++) {
+        for (
+          let index = 0;
+          index < fetchedConversationsArray?.length;
+          index++
+        ) {
           dispatch(fetchParticipants(fetchedConversationsArray[index]._id));
         }
       }
@@ -59,7 +63,7 @@ export default function MessagesScreen() {
         </h2>
       </div>
 
-      {conversations.map((conv, index) => {
+      {conversations?.map((conv, index) => {
         // Check if there are any messages and, if so, get the last one
         const lastMessage =
           conv.messages.length > 0

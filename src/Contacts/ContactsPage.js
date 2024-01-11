@@ -133,7 +133,7 @@ export default function ContactsPage() {
           Contacts
         </h2>
       </Row>
-      {contacts.map((contact, index) => (
+      {contacts?.map((contact, index) => (
         <Row
           key={index}
           className="bg-dark contact-row p-2"
