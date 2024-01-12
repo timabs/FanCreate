@@ -49,6 +49,7 @@ export const fetchConversations = createAsyncThunk(
       const token = localStorage.getItem("token");
       const response = await axios.get(`${apiUrl}/api/v1/conversations/`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
+        withCredentials: true,
       });
       return response.data.conversations;
     } catch (error) {
@@ -65,6 +66,7 @@ export const fetchActiveConvo = createAsyncThunk(
         `${apiUrl}/api/v1/conversations/setActive/`,
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
         }
       );
       return response.data.activeConvo;
@@ -78,7 +80,8 @@ export const fetchMessages = createAsyncThunk(
   async (conversationId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${apiUrl}/api/v1/conversations/${conversationId}/messages`
+        `${apiUrl}/api/v1/conversations/${conversationId}/messages`,
+        { withCredentials: true }
       );
       return response.data;
     } catch (error) {
@@ -96,6 +99,7 @@ export const createConversation = createAsyncThunk(
         { participants },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
         }
       );
       return response.data.data;
@@ -109,9 +113,13 @@ export const deleteConvo = createAsyncThunk(
   "messages/deleteConvo",
   async (conversationId, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`${apiUrl}/api/v1/conversations`, {
-        data: { conversationId },
-      });
+      const response = await axios.delete(
+        `${apiUrl}/api/v1/conversations`,
+        {
+          data: { conversationId },
+        },
+        { withCredentials: true }
+      );
       return response.data.deletedConvo;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -128,6 +136,7 @@ export const setActiveConvo = createAsyncThunk(
         { conversationId },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
         }
       );
       return response.data.data;
@@ -147,6 +156,7 @@ export const createMessage = createAsyncThunk(
         { conversationId, messageObj },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
         }
       );
 
@@ -161,9 +171,13 @@ export const editMsg = createAsyncThunk(
 
   async ({ msgId, newMsgData }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`${apiUrl}/api/v1/messages/${msgId}`, {
-        newMsgData: newMsgData,
-      });
+      const response = await axios.patch(
+        `${apiUrl}/api/v1/messages/${msgId}`,
+        {
+          newMsgData: newMsgData,
+        },
+        { withCredentials: true }
+      );
       return response.data.updatedMsg;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -178,7 +192,8 @@ export const editSender = createAsyncThunk(
         `${apiUrl}/api/v1/messages/${msgId}/sender`,
         {
           newSenderData: newSenderData,
-        }
+        },
+        { withCredentials: true }
       );
       return response.data.updatedSender;
     } catch (error) {
@@ -194,6 +209,7 @@ export const deleteMsg = createAsyncThunk(
         `${apiUrl}/api/v1/messages/${msgId}`,
         {
           data: { conversationId },
+          withCredentials: true,
         }
       );
       return response.data.deletedMsg;
@@ -207,7 +223,8 @@ export const fetchParticipants = createAsyncThunk(
   async (conversationId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${apiUrl}/api/v1/conversations/${conversationId}/users`
+        `${apiUrl}/api/v1/conversations/${conversationId}/users`,
+        { withCredentials: true }
       );
       return response.data;
     } catch (error) {
@@ -219,10 +236,14 @@ export const addUserToConvo = createAsyncThunk(
   "messages/addUserToConvo",
   async ({ conversationId, contact }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`${apiUrl}/api/v1/conversations`, {
-        conversationId,
-        contact,
-      });
+      const response = await axios.patch(
+        `${apiUrl}/api/v1/conversations`,
+        {
+          conversationId,
+          contact,
+        },
+        { withCredentials: true }
+      );
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -235,7 +256,8 @@ export const deleteUserFromConvo = createAsyncThunk(
   async ({ conversationId, participantId }, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `${apiUrl}/api/v1/conversations/${conversationId}/${participantId}`
+        `${apiUrl}/api/v1/conversations/${conversationId}/${participantId}`,
+        { withCredentials: true }
       );
       return response.data;
     } catch (error) {
@@ -247,10 +269,14 @@ export const addEmojiReact = createAsyncThunk(
   "messages/addEmojiReact",
   async ({ msgId, emojiCode }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${apiUrl}/api/v1/messages/emoji/`, {
-        msgId: msgId,
-        emojiCode: emojiCode,
-      });
+      const response = await axios.post(
+        `${apiUrl}/api/v1/messages/emoji/`,
+        {
+          msgId: msgId,
+          emojiCode: emojiCode,
+        },
+        { withCredentials: true }
+      );
       return response.data.msgToAddEmojiTo;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -266,7 +292,8 @@ export const editGroupChatName = createAsyncThunk(
         `${apiUrl}/api/v1/conversations/${conversationId}`,
         {
           gcName: gcName,
-        }
+        },
+        { withCredentials: true }
       );
       return response.data.editGc.groupChatName;
     } catch (error) {
@@ -282,7 +309,8 @@ export const editGroupChatPfp = createAsyncThunk(
         `${apiUrl}/api/v1/conversations/${conversationId}/pfp`,
         {
           gcPfp: gcPfp,
-        }
+        },
+        { withCredentials: true }
       );
       return response.data.editGcPfp.groupChatPfp;
     } catch (error) {

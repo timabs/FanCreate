@@ -34,7 +34,8 @@ export const updateSysDetails = createAsyncThunk(
       };
       const response = await axios.patch(
         `${apiUrl}/api/v1/conversations/${conversationId}/sys-details`,
-        { conversationId: conversationId, sysDetails: sysDetailsObj }
+        { conversationId: conversationId, sysDetails: sysDetailsObj },
+        { withCredentials: true }
       );
       return response.data;
     } catch (error) {

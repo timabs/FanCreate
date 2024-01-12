@@ -55,6 +55,9 @@ function NavBar() {
             `${apiUrl}/api/v1/auth/validate-token`,
             {
               token,
+            },
+            {
+              withCredentials: true,
             }
           );
           if (response.data.valid) {
@@ -199,55 +202,6 @@ function RightSidebar() {
     </Col>
   );
 }
-
-//Main section including tools and message component
-// class BodySection extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-
-//     const { uploadedImage, uploadedImages } = this.props;
-//     return (
-//       <Container
-//         fluid
-//         className="bodysec bg-info mx-0"
-//         style={{ width: "80%" }}
-//         onKeyDown={(e) => handleKeyDown(e)}
-//       >
-//         <Row className="tools-chat-row">
-//           <Tools />
-//           <Col
-//             className="p-2 d-flex align-items-center justify-content-center chatwrap-wrapper"
-//             md={7}
-//             lg={6}
-//             sm={12}
-//           >
-//             <Col
-//               style={{ width: "100%", height: "90%" }}
-//               className="d-flex chat-align-wrapper"
-//               sm={12}
-//               md={12}
-//             >
-//               <ActiveUsers
-//                 uploadedImages={
-//                   uploadedImage
-//                     ? [uploadedImage, ...uploadedImages]
-//                     : uploadedImages
-//                 }
-//               />
-//               <ChatProvider>
-//                 <ChatWrapper />
-//                 <RightSidebar />
-//               </ChatProvider>
-//             </Col>
-//           </Col>
-//         </Row>
-//       </Container>
-//     );
-//   }
-// }
 
 function BodySection({ uploadedImage, uploadedImages }) {
   // const { chatRef } = useContext(ChatContext);

@@ -1,7 +1,8 @@
 import axios from "axios";
+const apiUrl = "https://fancreate-backend.onrender.com";
 
 export async function getSig() {
-  const response = await axios.get(`/api/v1/auth/signature`);
+  const response = await axios.get(`${apiUrl}/api/v1/auth/signature`);
   return response.data;
 }
 export const getCloudinaryImgId = (imageURL) => {
@@ -28,9 +29,13 @@ export async function uploadImgToCloud(file) {
 }
 export async function deleteImgFromCloud(imageId) {
   try {
-    const response = await axios.post("/api/v1/images/delete", {
-      imageId: imageId,
-    });
+    const response = await axios.post(
+      `${apiUrl}/api/v1/images/delete`,
+      {
+        imageId: imageId,
+      },
+      { withCredentials: true }
+    );
   } catch (error) {
     console.log(error);
   }

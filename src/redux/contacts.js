@@ -14,6 +14,7 @@ export const fetchContacts = createAsyncThunk(
       const token = localStorage.getItem("token");
       const response = await axios.get(`${apiUrl}/api/v1/contacts/`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
+        withCredentials: true,
       });
       return response.data.contacts;
     } catch (error) {
@@ -31,6 +32,7 @@ export const createContact = createAsyncThunk(
         { contact },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
         }
       );
       console.log(response.data);
@@ -50,6 +52,7 @@ export const editContact = createAsyncThunk(
         { contactToEdit, newContactData },
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
+          withCredentials: true,
         }
       );
       return response.data;
@@ -62,9 +65,13 @@ export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   async ({ contactId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${apiUrl}/api/v1/contacts/delete`, {
-        contactId: contactId,
-      });
+      const response = await axios.post(
+        `${apiUrl}/api/v1/contacts/delete`,
+        {
+          contactId: contactId,
+        },
+        { withCredentials: true }
+      );
       return response.data.deletedContact;
     } catch (error) {
       return rejectWithValue(error.response.data);

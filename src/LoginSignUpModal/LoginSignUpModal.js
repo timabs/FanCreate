@@ -80,7 +80,8 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
       try {
         const response = await axios.post(
           `${apiUrl}/api/v1/auth/register`,
-          formData
+          formData,
+          { withCredentials: true }
         );
         localStorage.setItem("token", response.data.token);
         setOpen(false);
@@ -102,7 +103,8 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
       try {
         const response = await axios.post(
           `${apiUrl}/api/v1/auth/login`,
-          formData
+          formData,
+          { withCredentials: true }
         );
         localStorage.setItem("token", response.data.token);
         setOpen(false);
@@ -136,7 +138,7 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
           </button>
           <div className="modal-header-1">
             <h2>{isLogin ? "Login" : "Sign Up"}</h2>
-            <h3>Login to save your work</h3>
+            <h3 className="login-info-banner">Login to save your work</h3>
           </div>
           <div className="modal-body-1">
             {isLogin ? (
