@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./LoginSignUpModal.css";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setLoggedIn, setUsername } from "../redux/auth";
-const apiUrl = "https://fancreate-backend.onrender.com";
+import { useDispatch, useSelector } from "react-redux";
+import { login, signUp } from "../redux/auth";
+import CustomSpinner from "../utils/Spinner";
 
 const LoginSignupModal = ({ isOpen, setOpen }) => {
   const dispatch = useDispatch();
+  const authPending = useSelector((state) => state.auth.authPending);
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     username: "",
@@ -21,13 +21,6 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
       password: "",
       confirmPassword: "",
     });
-  };
-  const userErrors = {
-    noUser: "Username cannot be blank",
-    userTooShort: "Username must be at least 3 characters",
-    userTooLong: "Username max length is 12 characters",
-    chars: "Username can only contain characters: Aa-Zz, 0-9",
-    exists: "Username already exists",
   };
   const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e) => {
@@ -78,12 +71,13 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
         return;
       }
       try {
-        const response = await axios.post(
-          `${apiUrl}/api/v1/auth/register`,
-          formData,
-          { withCredentials: true }
-        );
-        localStorage.setItem("token", response.data.token);
+        // const response = await axios.post(
+        //   `${apiUrl}/api/v1/auth/register`,
+        //   formData,
+        //   { withCredentials: true }
+        // );
+        // localStorage.setItem("token", response.data.token);
+        await dispatch(signUp({ formData }));
         setOpen(false);
         setFormData({
           username: "",
@@ -91,8 +85,8 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
           password: "",
           confirmPassword: "",
         });
-        dispatch(setLoggedIn(true));
-        dispatch(setUsername(response.data.user.username));
+        // dispatch(setLoggedIn(true));
+        // dispatch(setUsername(response.data.user.username));
       } catch (error) {
         console.error("Registration error:", error);
         setErrorMessage(error.response.data.msg || "Error registering");
@@ -101,12 +95,13 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
       //login implementation
       e.preventDefault();
       try {
-        const response = await axios.post(
-          `${apiUrl}/api/v1/auth/login`,
-          formData,
-          { withCredentials: true }
-        );
-        localStorage.setItem("token", response.data.token);
+        //   const response = await axios.post(
+        //     `${apiUrl}/api/v1/auth/login`,
+        //     formData,
+        //     { withCredentials: true }
+        //   );
+        //   localStorage.setItem("token", response.data.token);
+        await dispatch(login({ formData }));
         setOpen(false);
         setFormData({
           username: "",
@@ -114,8 +109,8 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
           password: "",
           confirmPassword: "",
         });
-        dispatch(setLoggedIn(true));
-        dispatch(setUsername(response.data.user.username));
+        // dispatch(setLoggedIn(true));
+        // dispatch(setUsername(response.data.user.username));
       } catch (error) {
         console.error("Login error:", error);
         setErrorMessage(error.response.data.message || "Error logging in");
@@ -143,6 +138,10 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
           <div className="modal-body-1">
             {isLogin ? (
               <form className="form" onSubmit={handleSubmit}>
+                <CustomSpinner
+                  loadingType={authPending}
+                  style={{ position: "absolute", top: "50%", left: "50%" }}
+                />
                 <input
                   type="text"
                   placeholder="Username"

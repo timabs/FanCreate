@@ -459,10 +459,12 @@ const messagesSlice = createSlice({
             .find((convo) => convo._id === action.payload._id)
             .participants.slice(0, 1)
             .concat(action.payload.fullContacts);
-          state.activeConversation.participants =
-            state.activeConversation.participants
-              .slice(0, 1)
-              .concat(action.payload.fullContacts);
+          if (state.activeConversation) {
+            state.activeConversation.participants =
+              state.activeConversation.participants
+                .slice(0, 1)
+                .concat(action.payload.fullContacts);
+          }
         }
       })
       .addCase(addUserToConvo.fulfilled, (state, action) => {
@@ -515,7 +517,9 @@ const messagesSlice = createSlice({
         state.conversations.find(
           (convo) => convo._id === action.payload._id
         ).messages = action.payload.fullMessages;
-        state.activeConversation.messages = action.payload.fullMessages;
+        if (state.activeConversation) {
+          state.activeConversation.messages = action.payload.fullMessages;
+        }
       })
       .addCase(fetchMessages.rejected, (state, action) => {
         state.messagesLoading = false;
