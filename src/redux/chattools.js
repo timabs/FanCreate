@@ -6,6 +6,7 @@ const format = "h:mm A";
 const initialState = {
   youBubbleColor: "#00e34d",
   backgroundImg: "",
+  bgImgLink: "",
   opacity: 1,
   imgIsUploading: false,
   emoji: "",
@@ -15,7 +16,25 @@ const initialState = {
   wifi: 3,
   cellSignal: 5,
   detailsUpdating: false,
+  imgSaved: false,
 };
+
+export const updateBackgroundImg = createAsyncThunk(
+  "chat/updateBackgroundImg",
+  async ({ conversationId, bgImgLink }, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/api/v1/conversations/${conversationId}/bg`,
+        {
+          bgImgLink: bgImgLink,
+        }
+      );
+      return response.data.updatedBgImg.bgImg;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const updateSysDetails = createAsyncThunk(
   "chat/updateSysDetails",
@@ -54,7 +73,6 @@ const chatSlice = createSlice({
     },
     setBackgroundImg(state, action) {
       state.backgroundImg = action.payload;
-      console.log("bg img changed");
     },
     setOpacity(state, action) {
       state.opacity = action.payload;
@@ -92,6 +110,14 @@ const chatSlice = createSlice({
       })
       .addCase(updateSysDetails.fulfilled, (state) => {
         state.detailsUpdating = false;
+      })
+      .addCase(updateBackgroundImg.pending, (state, action) => {
+        state.imgIsUploading = true;
+      })
+      .addCase(updateBackgroundImg.fulfilled, (state, action) => {
+        state.backgroundImg = action.payload;
+        state.imgIsUploading = false;
+        state.imgSaved = true;
       });
   },
 });

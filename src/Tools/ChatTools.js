@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./ChatTools.css";
@@ -9,13 +9,18 @@ import {
   setBatteryLevel,
   setTime,
   updateSysDetails,
+  updateBackgroundImg,
 } from "../redux/chattools";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { Slider } from "antd";
 
 import ImageUploader from "../ImageHandling/ImageUploader";
-import { getCloudinaryImgId } from "../utils/cloudinary";
+import {
+  deleteImgFromCloud,
+  getCloudinaryImgId,
+  uploadImgToCloud,
+} from "../utils/cloudinary";
 import WifiLevels from "./WifiLevelControl";
 import TimeControl from "./TimeControl";
 import BatteryControl from "./BatteryControl";
@@ -84,18 +89,23 @@ function OpacitySlider() {
     </div>
   );
 }
-function DeleteBackgroundImg() {
+function DeleteBackgroundImg({ setBgBlob }) {
   const dispatch = useDispatch();
+  const activeConversation = useActiveConvo();
   const imgToDelURL = useSelector((state) => state.chat.backgroundImg);
   const removeBackgroundImg = async () => {
+    const conversationId = activeConversation?._id;
     const imageId = getCloudinaryImgId(imgToDelURL);
+    deleteImgFromCloud(imageId);
     try {
-      const res = await axios.post(`/api/v1/images/delete`, { imageId });
-      console.log(res.data);
-      dispatch(setBackgroundImg(null));
+      await axios.patch(
+        `https://fancreate-backend.onrender.com/api/v1/conversations/${conversationId}/bg-del`
+      );
     } catch (error) {
-      console.error(`Error deleting image: ${error}`);
+      console.log(error);
     }
+    dispatch(setBackgroundImg(null));
+    setBgBlob(null);
   };
   return (
     <div className="bg-img-tools">
@@ -112,9 +122,10 @@ function DeleteBackgroundImg() {
 export default function ChatTools() {
   const dispatch = useDispatch();
   const activeConversation = useActiveConvo();
+  const [bgBlob, setBgBlob] = useState(null);
   const detailsUpdating = useSelector((state) => state.chat.detailsUpdating);
   const backgroundImg = useSelector((state) => state.chat.backgroundImg);
-  const batteryLevel = useSelector((state) => state.chat.batteryLevel);
+  const imgSaved = useSelector((state) => state.chat.imgSaved);
   const activeTab = useSelector((state) => state.active.activeTab);
   const handleYouBubble = (e) => {
     const selectedColor = e.target.value || e.target.dataset.value;
@@ -126,12 +137,38 @@ export default function ChatTools() {
       date.style.setProperty("opacity", dateState === "on" ? 1 : 0);
     });
   };
-  const handleImgUpload = (imageURL) => {
+  const handleImgUpload = (imageURL, blob) => {
+    setBgBlob(blob);
     dispatch(setBackgroundImg(imageURL));
   };
   const handlePersistSysDetails = () => {
     dispatch(updateSysDetails({ conversationId: activeConversation._id }));
   };
+  const uploadBgImg = async () => {
+    if (activeConversation?.bgImg) {
+      const conversationId = activeConversation._id;
+      const oldImgLink = await getCloudinaryImgId(activeConversation?.bgImg);
+      await deleteImgFromCloud(oldImgLink);
+      try {
+        await axios.patch(
+          `https://fancreate-backend.onrender.com/api/v1/conversations/${conversationId}/bg-del`
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    const bgImgLink = await uploadImgToCloud(bgBlob);
+    dispatch(
+      updateBackgroundImg({
+        conversationId: activeConversation._id,
+        bgImgLink: bgImgLink,
+      })
+    );
+  };
+  useEffect(() => {
+    dispatch(setBackgroundImg(activeConversation?.bgImg));
+  }, [dispatch, activeConversation?.bgImg]);
   return (
     <div
       className={`chat-tools__primary__parent ${
@@ -199,7 +236,7 @@ export default function ChatTools() {
           </span>
           <div className="d-flex options" style={{ gap: "0.5rem" }}>
             <OpacitySlider />
-            <DeleteBackgroundImg />
+            <DeleteBackgroundImg setBgBlob={setBgBlob} />
             <label htmlFor="bg-img-uploader">
               <span className="options-btns btn btn-primary options">
                 Select Image{" "}
@@ -221,6 +258,12 @@ export default function ChatTools() {
                 alt="user's chosen background image"
               ></img>
             </div>
+            <span
+              className="options-btns btn btn-primary options"
+              onClick={uploadBgImg}
+            >
+              {imgSaved ? "Saved!" : "Save"}
+            </span>
           </div>
         </div>
       </Row>

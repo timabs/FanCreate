@@ -32,7 +32,7 @@ import { uploadImgToCloud } from "../utils/cloudinary";
 import { useDebounce } from "../CustomHooks/useDebounce";
 // import EmojiReact from "./EmojiPicker";
 import { Emoji } from "emoji-picker-react";
-import { setEmojiPickerOpen } from "../redux/chattools";
+import { setBackgroundImg, setEmojiPickerOpen } from "../redux/chattools";
 import DefaultEmojis from "./DefaultEmojis";
 // import GroupChat, {
 //   GroupChatContactScreen,
@@ -457,7 +457,7 @@ function Chat() {
       </div>
       <div className="semantic-input-div d-flex">
         <label
-          for="img-in-msg-uploader"
+          htmlFor="img-in-msg-uploader"
           onClick={() => {
             setImgPreviewOpen(true);
             dispatch(setMsgById(null));

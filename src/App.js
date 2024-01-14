@@ -104,7 +104,11 @@ function NavBar() {
               Login/Signup
             </button>
           ) : (
-            <div className="user-banner welcome">
+            <div
+              className={`user-banner welcome ${
+                isLargeScreen ? `position-absolute` : "mt-2"
+              }`}
+            >
               <span>Welcome, {username}! </span>
 
               <button
@@ -167,7 +171,7 @@ function RightSidebar() {
       style={{ paddingLeft: "0.5rem", justifyItems: "center" }}
     >
       <i
-        class="fa-solid fa-download mb-2"
+        className="fa-solid fa-download mb-2"
         role="button"
         onClick={triggerCapture}
       ></i>
@@ -181,7 +185,7 @@ function RightSidebar() {
         }}
       >
         <i
-          class="fa-solid fa-inbox text-light"
+          className="fa-solid fa-inbox text-light"
           style={{ fontSize: "1.25vw" }}
         ></i>
       </div>
