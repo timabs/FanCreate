@@ -30,6 +30,7 @@ import { setLoggedIn, setUsername } from "./redux/auth";
 import { logoutUser } from "./redux/actions";
 import { ConfigProvider } from "antd";
 import GroupChat from "./Contacts/GroupChat/GroupChatContactScreen";
+import Footer from "./GeneralComponents/Footer/Footer";
 const apiUrl = "https://fancreate-backend.onrender.com";
 
 function NavBar() {
@@ -279,8 +280,8 @@ function App() {
               style={{ flexDirection: "column", width: "100vw" }}
             >
               <NavBar />
-
               <BodySection />
+              <Footer />
             </Container>
           </ChatProvider>
         </ImageProvider>
