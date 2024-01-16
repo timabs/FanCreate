@@ -1,5 +1,6 @@
 //react redux
 import React, { useState, useEffect, useContext } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -31,9 +32,11 @@ import { logoutUser } from "./redux/actions";
 import { ConfigProvider } from "antd";
 import GroupChat from "./Contacts/GroupChat/GroupChatContactScreen";
 import Footer from "./GeneralComponents/Footer/Footer";
+import ContactPage from "./GeneralComponents/ContactMe/ContactMePage";
+import HomePage from "./GeneralComponents/HomePage/HomePage";
 const apiUrl = "https://fancreate-backend.onrender.com";
 
-function NavBar() {
+export function NavBar() {
   const [isOpen, setOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 560);
   const isGlobalLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -208,7 +211,7 @@ function RightSidebar() {
   );
 }
 
-function BodySection({ uploadedImage, uploadedImages }) {
+export function BodySection({ uploadedImage, uploadedImages }) {
   // const { chatRef } = useContext(ChatContext);
 
   return (
@@ -252,41 +255,35 @@ function BodySection({ uploadedImage, uploadedImages }) {
 
 function App() {
   return (
-    //config provider is for antd design tokens
-    <ConfigProvider
-      theme={{
-        // token: {
-        //   colorPrimary: "#a457fe",
-        // },
-        components: {
-          Slider: {
-            dotActiveBorderColor: "#6d21c4",
-            dotBorderColor: "#d14ea5",
-            dotSize: 6,
-            handleActiveColor: "#3204a3",
-            handleColor: "#d14ea5",
-            trackBg: "#d14ea5",
-            trackHoverBg: "#3204a3",
+    <Router>
+      <ConfigProvider
+        theme={{
+          components: {
+            Slider: {
+              dotActiveBorderColor: "#6d21c4",
+              dotBorderColor: "#d14ea5",
+              dotSize: 6,
+              handleActiveColor: "#3204a3",
+              handleColor: "#d14ea5",
+              trackBg: "#d14ea5",
+              trackHoverBg: "#3204a3",
+            },
           },
-        },
-      }}
-    >
-      <Provider store={store}>
-        <ImageProvider>
-          <ChatProvider>
-            <Container
-              fluid
-              className="d-flex justify-content-center align-items-center"
-              style={{ flexDirection: "column", width: "100vw" }}
-            >
-              <NavBar />
-              <BodySection />
+        }}
+      >
+        <Provider store={store}>
+          <ImageProvider>
+            <ChatProvider>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
               <Footer />
-            </Container>
-          </ChatProvider>
-        </ImageProvider>
-      </Provider>
-    </ConfigProvider>
+            </ChatProvider>
+          </ImageProvider>
+        </Provider>
+      </ConfigProvider>
+    </Router>
   );
 }
 

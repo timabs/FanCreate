@@ -1,5 +1,13 @@
 .footer-container {
   display: flex;
-  height: 25%;
   width: 50%;
+  justify-content: center;
+}
+.footer-labels {
+  color: #6d21c4;
+  text-decoration: none;
+}
+.footer-labels:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
