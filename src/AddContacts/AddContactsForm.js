@@ -76,6 +76,8 @@ export default function AddContactsForm() {
     setFirstName("");
     setLastName("");
     setPhone("");
+    setSelectedImage(null);
+    setImageBlob(null);
   };
 
   const debouncedSubmit = useDebounce(handleSubmit, 500);
@@ -164,7 +166,7 @@ export default function AddContactsForm() {
             {selectedImage ? (
               <img src={selectedImage} alt="uploaded" />
             ) : (
-              <img src="/among us.jpg" className="among-us" alt="default" />
+              <img src="/among-us.jpg" className="among-us" alt="default" />
             )}
           </div>
           <Form.Label className="add-photo-label">

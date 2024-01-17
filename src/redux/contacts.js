@@ -35,7 +35,6 @@ export const createContact = createAsyncThunk(
           withCredentials: true,
         }
       );
-      console.log(response.data);
       return response.data.contactData;
     } catch (error) {
       return rejectWithValue(error.response.data);

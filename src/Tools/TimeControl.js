@@ -16,7 +16,6 @@ export default function TimeControl() {
   }, [dispatch, activeConversation?.sysDetails, activeConversation]);
   const handleTimeChange = (time) => {
     const formattedTime = time ? dayjs(time).format(format) : "";
-    console.log(formattedTime);
     dispatch(setTime(formattedTime));
   };
   return (

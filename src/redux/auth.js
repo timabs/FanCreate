@@ -36,8 +36,7 @@ export const signUp = createAsyncThunk(
         }
       );
       localStorage.setItem("token", response.data.token);
-      setLoggedIn(true);
-      setUsername(response.data.user.username);
+      return response.data.user.username;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

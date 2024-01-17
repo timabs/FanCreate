@@ -10,7 +10,7 @@ const ContactForm = () => {
 
     xhr.setRequestHeader("content-type", "application/json");
     xhr.onload = function () {
-      if (xhr.responseText == "success") {
+      if (xhr.responseText === "success") {
         form.resetFields();
       } else {
         alert("Something went wrong!");

@@ -104,14 +104,19 @@ export default function MessagesScreen() {
                   src={conv.groupChatPfp}
                   alt="Group Chat"
                 ></img>
-              ) : conv.participants.length < 3 ? (
+              ) : conv.participants.length < 3 &&
+                conv.participants.length > 1 ? (
                 <img
                   className="convo-pfp"
                   alt="default chat"
                   src={conv?.participants[1]?.pfp}
                 ></img>
               ) : (
-                <div></div>
+                <img
+                  src="/among-us.jpg"
+                  className="convo-pfp"
+                  alt="placeholder for only one participant in chat"
+                ></img>
               )}
             </div>
             <div className="line-wrapper">

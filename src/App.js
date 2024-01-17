@@ -128,8 +128,15 @@ export function NavBar() {
             className="text-center text-dark p-3 main-title"
             style={{ fontSize: "4rem" }}
           >
-            FanCreate
+            FanCreate{" "}
+            <i
+              className="text-center text-warning"
+              style={{ fontSize: "1rem" }}
+            >
+              Open Beta
+            </i>
           </h1>
+
           <LoginSignupModal isOpen={isOpen} setOpen={setOpen} />
         </Col>
       </Row>

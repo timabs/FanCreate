@@ -145,7 +145,7 @@ export default function ContactsPage() {
             className="contact-col d-flex justify-content-center align-items-center p-0"
           >
             <img
-              src={contact.pfp}
+              src={contact.pfp ? contact.pfp : "/among-us.jpg"}
               className="contact-pfp"
               alt={`Contact "${contact.first}"'s profile pic`}
             ></img>
