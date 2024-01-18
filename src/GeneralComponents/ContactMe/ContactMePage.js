@@ -19,7 +19,7 @@ export default function ContactPage() {
       <div className="socials">
         <div className="socials-label">Socials: </div>
         <div className="twitter">
-          <a href="https://twitter.com/morseyLane" target="_blank">
+          <a href="https://twitter.com/timabsNYC" target="_blank">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
         </div>
