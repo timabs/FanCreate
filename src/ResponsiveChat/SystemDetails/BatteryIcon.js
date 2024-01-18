@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./BatteryIcon.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setBatteryLevel } from "../../redux/chattools";
+import { useSelector } from "react-redux";
+// import { setBatteryLevel } from "../../redux/chattools";
 
 export default function BatteryIcon() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const batteryLevel = useSelector((state) => state.chat.batteryLevel);
 
   return (

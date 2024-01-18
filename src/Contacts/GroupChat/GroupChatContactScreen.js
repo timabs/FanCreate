@@ -11,7 +11,7 @@ import {
   faCloudArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import useActiveConvo from "../../CustomHooks/activeConvosHooks";
-import active, { setActiveScreen } from "../../redux/active";
+import { setActiveScreen } from "../../redux/active";
 import { useDispatch, useSelector } from "react-redux";
 import { editGroupChatName, editGroupChatPfp } from "../../redux/messages";
 import {
@@ -231,7 +231,7 @@ export default function GroupChat() {
               user._id === "1" ? null : (
                 <div className="gc-user-card mb-2" key={index}>
                   <div className="gc-pfp">
-                    <img src={user.pfp}></img>
+                    <img src={user.pfp} alt="user profile pic"></img>
                   </div>
                   <span>
                     {user.first} {user.last}

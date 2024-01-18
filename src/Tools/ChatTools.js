@@ -6,14 +6,12 @@ import {
   setYouBubbleColor,
   setBackgroundImg,
   setOpacity,
-  setBatteryLevel,
-  setTime,
   updateSysDetails,
   updateBackgroundImg,
 } from "../redux/chattools";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import { Slider } from "antd";
+// import { Slider } from "antd";
 
 import ImageUploader from "../ImageHandling/ImageUploader";
 import {

@@ -8,7 +8,7 @@ import {
 import "./ChatBanner.css";
 import SystemDetailsBar from "./SystemDetails/SystemDetails";
 import { useDispatch } from "react-redux";
-import active, { setActiveScreen } from "../redux/active";
+import { setActiveScreen } from "../redux/active";
 
 export default function ChatBanner() {
   const dispatch = useDispatch();
@@ -42,7 +42,11 @@ export default function ChatBanner() {
       {gcPfp ? (
         <div className="d-flex flex-direction-row">
           <div className="banner-img-divs">
-            <img className="banner-imgs" src={gcPfp}></img>
+            <img
+              className="banner-imgs"
+              src={gcPfp}
+              alt="profile pic for group chat in the banner"
+            ></img>
           </div>
         </div>
       ) : shuffledUsers?.length < 4 && shuffledUsers.length > 1 ? (

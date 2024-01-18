@@ -79,12 +79,10 @@ async function addToImages(dividedImages, bannerDataUrl, bottomElementUrl) {
 function applyInlineStyles(original, clone) {
   const originalStyles = window.getComputedStyle(original);
 
-  // Apply the parent element's styles
   for (const key of originalStyles) {
     clone.style[key] = originalStyles[key];
   }
 
-  // Apply styles to children
   const children = original.children;
   const clonedChildren = clone.children;
 
@@ -94,11 +92,11 @@ function applyInlineStyles(original, clone) {
 }
 
 export const captureChat = async (chatRef, messagesRef) => {
-  const chatElement = chatRef.current;
+  // const chatElement = chatRef.current;
   const messagesElement = messagesRef.current;
-  const totalHeight = messagesElement.scrollHeight;
+  // const totalHeight = messagesElement.scrollHeight;
   const visibleHeight = messagesElement.clientHeight;
-  let scrollTop = 0;
+  // let scrollTop = 0;
   let images = [];
 
   const msgsClone = messagesElement.cloneNode(true);

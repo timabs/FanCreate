@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SystemDetails.css";
 import "../../css/index.css";
 import BatteryIcon from "./BatteryIcon";
 import { useSelector } from "react-redux";
 
 export default function SystemDetailsBar() {
-  const activeConversation = useSelector(
-    (state) => state.messages.activeConversation
-  );
+  // const activeConversation = useSelector(
+  //   (state) => state.messages.activeConversation
+  // );
   const batteryLevel = useSelector((state) => state.chat.batteryLevel);
   const time = useSelector((state) => state.chat.time);
   const wifi = useSelector((state) => state.chat.wifi);
@@ -18,12 +18,17 @@ export default function SystemDetailsBar() {
       <div className="sys-details-right">
         <div className="phone-internet-section">
           <span className="internet-icon">
-            <img src={`./wifi-${wifi}.png`} className="wifi-bars-img"></img>
+            <img
+              src={`./wifi-${wifi}.png`}
+              className="wifi-bars-img"
+              alt="Wifi bars"
+            ></img>
           </span>
           <span className="signal">
             <img
               src={`./cell-service-${cellSignal}.png`}
               className="cell-bars-img"
+              alt="Cell phone signal bars"
             ></img>
           </span>
         </div>

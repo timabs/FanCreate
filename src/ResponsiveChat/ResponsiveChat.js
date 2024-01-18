@@ -32,7 +32,7 @@ import { uploadImgToCloud } from "../utils/cloudinary";
 import { useDebounce } from "../CustomHooks/useDebounce";
 // import EmojiReact from "./EmojiPicker";
 import { Emoji } from "emoji-picker-react";
-import { setBackgroundImg, setEmojiPickerOpen } from "../redux/chattools";
+import { setEmojiPickerOpen } from "../redux/chattools";
 import DefaultEmojis from "./DefaultEmojis";
 // import GroupChat, {
 //   GroupChatContactScreen,

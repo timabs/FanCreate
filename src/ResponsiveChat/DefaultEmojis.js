@@ -58,6 +58,7 @@ export default function DefaultEmojis({ message }) {
         <img
           src="/ellipsis.png"
           style={{ width: "100%", height: "100%" }}
+          alt="More emojis. Unavailable for now"
         ></img>
       </span>
       {/* {isEmojiPickerOpen && <EmojiReact message={message} />} */}

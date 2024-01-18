@@ -19,12 +19,16 @@ export default function ContactPage() {
       <div className="socials">
         <div className="socials-label">Socials: </div>
         <div className="twitter">
-          <a href="https://twitter.com/timabsNYC" target="_blank">
+          <a
+            href="https://twitter.com/timabsNYC"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faTwitter} />
           </a>
         </div>
         <div className="github">
-          <a href="https://github.com/timabs/" target="_blank">
+          <a href="https://github.com/timabs/" target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
@@ -32,6 +36,7 @@ export default function ContactPage() {
           <a
             href="https://www.youtube.com/channel/UCk6gaELACwZZQQlWjdUBJxw"
             target="_blank"
+            rel="noreferrer"
           >
             <FontAwesomeIcon icon={faYoutube} />
           </a>

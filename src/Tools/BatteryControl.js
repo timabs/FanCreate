@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import "../ResponsiveChat/SystemDetails/SystemDetails.css";
 import "./ChatTools.css";
 import useActiveConvo from "../CustomHooks/activeConvosHooks";
-import active from "../redux/active";
 
 export default function BatteryControl() {
   const dispatch = useDispatch();

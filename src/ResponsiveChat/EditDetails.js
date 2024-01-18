@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setTargetToEditId,
@@ -10,18 +10,18 @@ import {
 } from "../redux/messages";
 import { setUsersVisible } from "../redux/contacts";
 import useActiveConvo from "../CustomHooks/activeConvosHooks";
-import { Emoji } from "emoji-picker-react";
-import { addEmojiReact } from "../redux/messages";
-import { setEmojiPickerOpen } from "../redux/chattools";
+// import { Emoji } from "emoji-picker-react";
+// import { addEmojiReact } from "../redux/messages";
+// import { setEmojiPickerOpen } from "../redux/chattools";
 
 export default function EditDetails({ message, setImgPreview }) {
   const dispatch = useDispatch();
-  const isEmojiPickerOpen = useSelector(
-    (state) => state.chat.isEmojiPickerOpen
-  );
+  // const isEmojiPickerOpen = useSelector(
+  //   (state) => state.chat.isEmojiPickerOpen
+  // );
   const activeConversation = useActiveConvo();
   const targetToEditId = useSelector((state) => state.messages.targetToEditId);
-  const oneMessageById = useSelector((state) => state.messages.oneMessageById);
+  // const oneMessageById = useSelector((state) => state.messages.oneMessageById);
   const handleReply = (msg) => {
     dispatch(setTargetToEditId(null));
     dispatch(setMsgById(msg._id));

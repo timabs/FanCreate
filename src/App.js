@@ -1,6 +1,6 @@
 //react redux
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -145,12 +145,10 @@ export function NavBar() {
 }
 
 function ChatWrapper() {
-  const { chatRef } = useContext(ChatContext);
   return (
     <div
       className="chat-wrapper col-lg-8 justify-content-center col-md-8 col-xxl-6"
       style={{ height: "100%" }}
-      //ref={chatRef}
     >
       <AddContactsForm />
       <GroupChat />
