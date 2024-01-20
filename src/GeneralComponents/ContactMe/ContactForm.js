@@ -1,22 +1,28 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
+import axios from "axios";
+
 import "./ContactPage.css";
 
 const ContactForm = () => {
   const [form] = Form.useForm();
-  const onFinish = (formData) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://portfolio-backend-zlwq.onrender.com/form");
+  const onFinish = async (formData) => {
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("POST", "https://portfolio-backend-zlwq.onrender.com/form");
 
-    xhr.setRequestHeader("content-type", "application/json");
-    xhr.onload = function () {
-      if (xhr.responseText === "success") {
-        form.resetFields();
-      } else {
-        alert("Something went wrong!");
-      }
-    };
-    xhr.send(JSON.stringify(formData));
+    // xhr.setRequestHeader("content-type", "application/json");
+    // xhr.onload = function () {
+    //   if (xhr.responseText === "success") {
+    //     form.resetFields();
+    //   } else {
+    //     alert("Something went wrong!");
+    //   }
+    // };
+    // xhr.send(JSON.stringify(formData));
+    await axios.post(`https://fancreate-backend.onrender.com/api/v1/form`, {
+      formData,
+    });
+    form.resetFields();
   };
 
   return (
