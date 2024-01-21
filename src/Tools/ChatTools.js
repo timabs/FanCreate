@@ -175,7 +175,7 @@ export default function ChatTools() {
     >
       <Row className="tools-div p-2 align-items-center justify-content-center">
         <div className="setting-label">
-          <span className="text-dark">Bubble Color:</span>
+          <span className="text-dark category-label">Bubble Color:</span>
           <div className="d-grid options">
             <Button
               className="green-text"
@@ -212,7 +212,7 @@ export default function ChatTools() {
       </Row>
       <Row className="tools-div p-2 align-items-center justify-content-center">
         <div className="setting-label">
-          <span className="text-dark ">Date:</span>
+          <span className="text-dark category-label">Date:</span>
           <div className="d-flex options">
             <Button
               className="options-btns primary"
@@ -229,13 +229,16 @@ export default function ChatTools() {
       </Row>
       <Row className="tools-div p-2 align-items-center justify-content-center">
         <div className="setting-label">
-          <span className="text-dark" style={{ width: "40%" }}>
+          <span className="text-dark category-label" style={{ width: "40%" }}>
             Background Image:
           </span>
-          <div className="d-flex options" style={{ gap: "0.5rem" }}>
+          <div
+            className="d-flex options bg-img-options"
+            style={{ gap: "0.5rem" }}
+          >
             <OpacitySlider />
             <DeleteBackgroundImg setBgBlob={setBgBlob} />
-            <label htmlFor="bg-img-uploader">
+            <label htmlFor="bg-img-uploader" className="bg-img-ul-label">
               <span className="options-btns btn btn-primary options">
                 Select Image{" "}
                 <ImageUploader
@@ -257,7 +260,7 @@ export default function ChatTools() {
               ></img>
             </div>
             <span
-              className="options-btns btn btn-primary options"
+              className="options-btns btn btn-primary options save-btn"
               onClick={uploadBgImg}
             >
               {imgSaved ? "Saved!" : "Save"}
@@ -267,7 +270,7 @@ export default function ChatTools() {
       </Row>
       <Row className="tools-div p-2 align-items-center justify-content-center">
         <div className="setting-label" style={{ alignItems: "flex-start" }}>
-          <span className="text-dark" style={{ width: "40%" }}>
+          <span className="text-dark category-label" style={{ width: "40%" }}>
             System Info:
           </span>
           <div className="d-flex options all-sys-details-options">

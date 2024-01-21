@@ -82,6 +82,7 @@ input[type="color"] {
   position: relative;
   width: 5%;
   height: 5%;
+  display: flex;
 }
 .mini-phone-div {
   height: 60%;
@@ -128,15 +129,35 @@ input[type="color"] {
 }
 
 @media (max-width: 576px) {
-  .tabs > p {
-    font-size: 110%;
+  .chat-align-wrapper > .texters-col {
+    padding: 0 !important;
+    width: 10% !important;
   }
-  .setting-label > span {
+  .chat-wrapper {
+    width: 80% !important;
+  }
+  .whole-page-container {
+    padding: 0;
+  }
+  .setting-label {
+    gap: 0.5rem;
+  }
+  .bodysec {
+    padding: 0;
+  }
+  .tabs > p {
     font-size: 100%;
+  }
+  .category-label {
+    width: fit-content;
+    font-size: 80%;
   }
   .options {
     width: fit-content;
-    gap: 1rem;
+    gap: 0.5rem !important;
+  }
+  .options.bg-img-options {
+    width: 100%;
   }
   .options > button {
     width: 100%;
@@ -145,16 +166,25 @@ input[type="color"] {
     padding: 0.25rem !important;
     line-height: 1.25 !important ;
   }
+  .save-btn {
+    font-size: 70%;
+    padding: 0.25rem;
+  }
   .options > label {
     font-size: 80%;
   }
+  .options > .bg-img-ul-label {
+    font-size: 70%;
+  }
+  .options > .bg-img-ul-label > span {
+    padding: 0.25rem;
+  }
   .bg-img-tools {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
   }
   .mini-phone-div {
     height: 80%;
-    width: 7.5%;
+    width: 10%;
   }
   input[type="color"] {
     width: 2rem;

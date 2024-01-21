@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center"
+      className="d-flex justify-content-center align-items-center whole-page-container"
       style={{ flexDirection: "column", width: "100vw" }}
     >
       <NavBar />

@@ -11,9 +11,9 @@
   .text-icon-div > div > i,
   .users-icon-div,
   .users-icon-div > i {
-    width: 6vw !important;
-    height: 6vw !important;
-    font-size: 3.5vw !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 16px !important;
   }
 }
 @media (min-width: 767px) {
