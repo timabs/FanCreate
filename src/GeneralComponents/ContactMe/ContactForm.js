@@ -1,27 +1,17 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button } from "antd";
-import axios from "axios";
 
 import "./ContactPage.css";
+import { submitEmail } from "../../redux/admin";
+import CustomSpinner from "../../utils/Spinner";
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
+  const submitLoading = useSelector((state) => state.admin.submitLoading);
   const [form] = Form.useForm();
   const onFinish = async (formData) => {
-    // let xhr = new XMLHttpRequest();
-    // xhr.open("POST", "https://portfolio-backend-zlwq.onrender.com/form");
-
-    // xhr.setRequestHeader("content-type", "application/json");
-    // xhr.onload = function () {
-    //   if (xhr.responseText === "success") {
-    //     form.resetFields();
-    //   } else {
-    //     alert("Something went wrong!");
-    //   }
-    // };
-    // xhr.send(JSON.stringify(formData));
-    await axios.post(`https://fancreate-backend.onrender.com/api/v1/form`, {
-      formData,
-    });
+    await dispatch(submitEmail({ formData: formData }));
     form.resetFields();
   };
 
@@ -49,8 +39,23 @@ const ContactForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ backgroundColor: "#a457fe" }}
+        >
+          {submitLoading ? (
+            <CustomSpinner
+              loadingType={submitLoading}
+              style={{
+                height: "1rem",
+                width: "1rem",
+                color: "white !important",
+              }}
+            />
+          ) : (
+            "Submit"
+          )}
         </Button>
       </Form.Item>
     </Form>

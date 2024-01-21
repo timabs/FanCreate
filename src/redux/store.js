@@ -4,6 +4,7 @@ import messagesReducer from "./messages";
 import activeReducer from "./active";
 import chatReducer from "./chattools";
 import authReducer from "./auth";
+import adminReducer from "./admin";
 
 // Action Sanitizer
 const actionSanitizer = (action) => {
@@ -38,6 +39,7 @@ const store = configureStore({
     active: activeReducer,
     chat: chatReducer,
     auth: authReducer,
+    admin: adminReducer,
   },
   devTools: {
     actionSanitizer,
