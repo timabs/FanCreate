@@ -327,7 +327,6 @@ input[type="file"] {
   transition: background-color 0.1s;
 }
 
-/* Style for when the checkbox input is checked */
 .custom-checkbox-input:checked + .custom-checkbox-label::before {
   background-color: var(--danger);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20.285 2l-11.285 11.567-3.286-3.011-5.714 6.443 9 8.001 18-18-7.715-5z"/></svg>'); /* This is a checkmark icon */
@@ -338,6 +337,13 @@ input[type="file"] {
 .custom-checkbox-label:hover::before {
   border-color: #007bff;
 }
+@media (max-width: 576px) {
+  .pfp-div {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+}
+
 @media (max-width: 767px) {
   .col-sm-12 {
     width: 100% !important;

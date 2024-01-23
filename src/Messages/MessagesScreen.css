@@ -2,8 +2,15 @@
   background-color: #f2f1f6;
   overflow: auto;
 }
+.new-msg-div {
+  position: absolute;
+  bottom: 3%;
+  right: 6%;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}
 .new-msg {
-  height: 2vw;
   position: relative;
   z-index: 6;
 }
@@ -77,9 +84,13 @@
 }
 
 @media (max-width: 576px) {
+  .new-msg-div {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
   .new-msg {
-    width: 5vw;
-    height: 5vw;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
 @media (min-width: 577px) {

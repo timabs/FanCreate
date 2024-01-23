@@ -145,10 +145,12 @@ export function NavBar() {
 }
 
 function ChatWrapper() {
+  const { chatRef } = useContext(ChatContext);
   return (
     <div
       className="chat-wrapper col-lg-8 justify-content-center col-md-8 col-xxl-6"
       style={{ height: "100%" }}
+      ref={chatRef}
     >
       <AddContactsForm />
       <GroupChat />

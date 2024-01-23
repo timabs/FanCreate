@@ -230,7 +230,7 @@ export default function GroupChat() {
             {activeConversation?.participants?.map((user, index) =>
               user._id === "1" ? null : (
                 <div className="gc-user-card mb-2" key={index}>
-                  <div className="gc-pfp">
+                  <div className="pfp-div">
                     <img src={user.pfp} alt="user profile pic"></img>
                   </div>
                   <span>

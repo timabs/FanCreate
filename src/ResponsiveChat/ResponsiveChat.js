@@ -243,36 +243,6 @@ function Chat() {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, []);
-  const toggleFullscreen = () => {
-    const chat = chatRef.current;
-    if (!document.fullscreenElement) {
-      if (chat.requestFullscreen) {
-        chat.requestFullscreen();
-      } else if (chat.mozRequestFullScreen) {
-        /* Firefox */
-        chat.mozRequestFullScreen();
-      } else if (chat.webkitRequestFullscreen) {
-        /* Chrome, Safari & Opera */
-        chat.webkitRequestFullscreen();
-      } else if (chat.msRequestFullscreen) {
-        /* IE/Edge */
-        chat.msRequestFullscreen();
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        /* Firefox */
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        /* Chrome, Safari and Opera */
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        /* IE/Edge */
-        document.msExitFullscreen();
-      }
-    }
-  };
 
   return (
     <form
@@ -281,21 +251,10 @@ function Chat() {
         e.preventDefault();
         debouncedSendMessage();
       }}
-      ref={chatRef}
     >
       <div
         className={`chat-modal ${targetToEditId ? "opacity-1" : "opacity-0"}`}
       ></div>
-
-      <img
-        src="./fullscreen.png"
-        aria-hidden="true"
-        className="fa-solid fa-expand"
-        style={{ color: "#b5b7ba" }}
-        onClick={toggleFullscreen}
-        role="button"
-        alt="toggle fullscreen button"
-      ></img>
       <ChatStartupScreen />
       <ChatBanner />
 

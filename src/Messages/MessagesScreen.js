@@ -157,15 +157,7 @@ export default function MessagesScreen() {
         );
       })}
       <div
-        className="d-flex justify-content-center align-items-center"
-        style={{
-          position: "absolute",
-          bottom: "3%",
-          right: "6%",
-          height: "2.5vw",
-          width: "2.5vw",
-          borderRadius: "50%",
-        }}
+        className="d-flex justify-content-center align-items-center new-msg-div"
         onClick={handleClick}
       >
         <img
