@@ -7,8 +7,15 @@
 .footer-labels {
   color: #6d21c4;
   text-decoration: none;
+  width: fit-content;
 }
 .footer-labels:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .footer-container {
+    width: 100%;
+  }
 }

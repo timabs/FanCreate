@@ -8,6 +8,13 @@
   align-self: center;
   margin: 0 auto;
 }
+.main-title-contact {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+
 .socials {
   display: flex;
   flex-direction: row;
@@ -28,7 +35,26 @@
 .socials-label {
   font-weight: bold;
 }
-
+.contact-page-wrapper > p {
+  margin-bottom: 0;
+}
 .ant-form {
   width: 40%;
+}
+
+@media (max-width: 560px) {
+  .contact-page-wrapper {
+    margin: 0 0;
+    width: 100%;
+    padding: 1rem;
+  }
+  .main-title-contact {
+    font-size: 3.5rem;
+  }
+  .contact-page-wrapper > p {
+    width: 90%;
+  }
+  .ant-form {
+    width: 90%;
+  }
 }

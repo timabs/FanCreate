@@ -25,6 +25,7 @@ import { useDebounce } from "../CustomHooks/useDebounce";
 export default function ContactsPage() {
   const contactsScreenOpen = useSelector((state) => state.active.activeScreen);
   const contacts = useSelector((state) => state.contacts.contactsArr);
+  const contactSuccess = useSelector((state) => state.contacts.contactSuccess);
   const dispatch = useDispatch();
   const addUsersMode = useSelector((state) => state.messages.addUsersMode);
   //state for checked contacts
@@ -211,6 +212,13 @@ export default function ContactsPage() {
           Done
         </span>
       </Button>
+      <div
+        className={`contact-added bg-success ${
+          contactSuccess ? "d-block animate" : "d-none"
+        }`}
+      >
+        Contact Added!
+      </div>
       <div
         className="d-flex justify-content-center align-items-center new-msg-div"
         onClick={() => openAddContact()}

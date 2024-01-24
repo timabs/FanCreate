@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiUrl = "https://fancreate-backend.onrender.com";
+const apiUrl = "https:fancreate-backend.onrender.com";
 const initialState = {
   contactsArr: [],
   contactToEdit: null,
   recentlyEditedContactId: null,
   isTextersVisible: false,
+  contactSuccess: false,
 };
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchContacts",
@@ -24,7 +25,7 @@ export const fetchContacts = createAsyncThunk(
 );
 export const createContact = createAsyncThunk(
   "contacts/createContact",
-  async ({ contact }, { rejectWithValue }) => {
+  async ({ contact }, { dispatch, rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -35,6 +36,9 @@ export const createContact = createAsyncThunk(
           withCredentials: true,
         }
       );
+      setTimeout(() => {
+        dispatch(setContactSuccess(false));
+      }, 3000);
       return response.data.contactData;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -84,11 +88,9 @@ const contactsSlice = createSlice({
     addToContacts: (state, action) => {
       state.contactsArr.push(action.payload);
     },
-    // deleteContact: (state, action) => {
-    //   state.contactsArr = state.contactsArr.filter(
-    //     (contact) => contact.id !== action.payload.id
-    //   );
-    // },
+    setContactSuccess: (state, action) => {
+      state.contactSuccess = action.payload;
+    },
     setUsersVisible: (state, action) => {
       state.isTextersVisible = action.payload || !state.isTextersVisible;
     },
@@ -98,15 +100,6 @@ const contactsSlice = createSlice({
     clearContactToEdit: (state) => {
       state.contactToEdit = null;
     },
-    // editContact: (state, action) => {
-    //   const index = state.contactsArr.findIndex(
-    //     (contact) => contact.id === action.payload._id
-    //   );
-    //   if (index !== -1) {
-    //     state.contactsArr[index] = action.payload;
-    //     state.recentlyEditedContactId = action.payload._id;
-    //   }
-    // },
     clearRecentlyEdited: (state) => {
       state.recentlyEditedContactId = null;
     },
@@ -117,6 +110,7 @@ const contactsSlice = createSlice({
         state.contactsArr = action.payload;
       })
       .addCase(createContact.fulfilled, (state, action) => {
+        state.contactSuccess = true;
         state.contactsArr.push(action.payload);
       })
       .addCase(editContact.fulfilled, (state, action) => {
@@ -138,6 +132,7 @@ const contactsSlice = createSlice({
 export const {
   addToContacts,
   setContactToEdit,
+  setContactSuccess,
   clearContactToEdit,
   clearRecentlyEdited,
   setUsersVisible,

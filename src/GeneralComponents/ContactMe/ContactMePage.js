@@ -10,12 +10,7 @@ import ContactForm from "./ContactForm";
 export default function ContactPage() {
   return (
     <div className="contact-page-wrapper">
-      <h1
-        class="text-center text-dark p-3 main-title"
-        style={{ fontSize: "4rem" }}
-      >
-        Contact Me
-      </h1>
+      <h1 class="text-center text-dark p-3 main-title-contact">Contact Me</h1>
       <div className="socials">
         <div className="socials-label">Socials: </div>
         <div className="twitter">

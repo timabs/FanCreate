@@ -2,6 +2,7 @@
   position: absolute;
   top: 50%;
   left: 5%;
+  width: 0.5rem;
 }
 .to-gc-info {
   grid-row: 1;

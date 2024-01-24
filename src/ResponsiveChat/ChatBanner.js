@@ -33,12 +33,19 @@ export default function ChatBanner() {
   return (
     <div className="chat-banner">
       <SystemDetailsBar />
-      <FontAwesomeIcon
+      <img
+        src="/chev-left.png"
+        aria-hidden="true"
+        role="button"
+        onClick={() => dispatch(setActiveScreen("messages"))}
+        className="back-button"
+      />
+      {/* <FontAwesomeIcon
         icon={faChevronLeft}
         className="back-button"
         role="button"
         onClick={() => dispatch(setActiveScreen("messages"))}
-      />
+      /> */}
       {gcPfp ? (
         <div className="d-flex flex-direction-row">
           <div className="banner-img-divs">

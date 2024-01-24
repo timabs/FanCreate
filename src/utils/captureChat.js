@@ -77,10 +77,14 @@ async function addToImages(dividedImages, bannerDataUrl, bottomElementUrl) {
   }
 }
 function applyInlineStyles(original, clone) {
-  const originalStyles = window.getComputedStyle(original);
+  if (original instanceof SVGElement) {
+    clone.setAttribute("class", original.getAttribute("class"));
+  } else {
+    const originalStyles = window.getComputedStyle(original);
 
-  for (const key of originalStyles) {
-    clone.style[key] = originalStyles[key];
+    for (const key of originalStyles) {
+      clone.style[key] = originalStyles[key];
+    }
   }
 
   const children = original.children;
@@ -91,7 +95,7 @@ function applyInlineStyles(original, clone) {
   }
 }
 
-export const captureChat = async (chatRef, messagesRef) => {
+export const captureChat = async (messagesRef) => {
   // const chatElement = chatRef.current;
   const messagesElement = messagesRef.current;
   // const totalHeight = messagesElement.scrollHeight;
@@ -112,7 +116,17 @@ export const captureChat = async (chatRef, messagesRef) => {
     height: messagesElement.scrollHeight,
   });
 
-  const bannerImg = await domtoimage.toPng(banner);
+  let bannerImg;
+  try {
+    bannerImg = await domtoimage.toPng(banner);
+  } catch (error) {
+    console.error("Error converting banner to image:", error);
+  }
+
+  if (!bannerImg) {
+    console.error("Failed to set bannerImg, exiting function.");
+    return;
+  }
 
   const bottomImg = await domtoimage.toPng(bottomElement);
 
