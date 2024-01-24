@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiUrl = "https:fancreate-backend.onrender.com";
+const apiUrl = "https://fancreate-backend.onrender.com";
 const initialState = {
   contactsArr: [],
   contactToEdit: null,
