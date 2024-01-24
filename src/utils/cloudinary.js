@@ -22,7 +22,8 @@ export async function uploadImgToCloud(file) {
       "https://api.cloudinary.com/v1_1/fancreate/image/upload",
       imageData
     );
-    return response.data.url;
+    const secureUrl = response.data.url.replace(/^http:/, "https:");
+    return secureUrl;
   } catch (error) {
     console.log("Upload failed:", error);
   }
