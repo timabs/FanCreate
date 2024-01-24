@@ -129,7 +129,6 @@ const contactsSlice = createSlice({
         }
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.contactsArr = state.contactsArr.filter(
           (contact) => contact._id !== action.payload._id
         );
