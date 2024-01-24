@@ -337,6 +337,14 @@ input[type="file"] {
 .custom-checkbox-label:hover::before {
   border-color: #007bff;
 }
+.visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 @media (max-width: 576px) {
   .pfp-div {
     width: 7.5rem;

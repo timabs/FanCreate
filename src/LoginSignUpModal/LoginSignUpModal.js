@@ -142,19 +142,29 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
                   loadingType={authPending}
                   style={{ position: "absolute", top: "50%", left: "50%" }}
                 />
+                <label htmlFor="username" className="visually-hidden">
+                  Username
+                </label>
                 <input
                   type="text"
                   placeholder="Username"
                   onChange={handleInputChange}
                   name="username"
                   value={formData.username}
+                  autoComplete="username"
+                  required
                 />
+                <label htmlFor="password" className="visually-hidden">
+                  Password
+                </label>
                 <input
                   type="password"
                   placeholder="Password"
                   onChange={handleInputChange}
                   name="password"
                   value={formData.password}
+                  autoComplete="current-password"
+                  required
                 />
                 <button type="submit">Login</button>
               </form>
@@ -164,13 +174,21 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
                   loadingType={authPending}
                   style={{ position: "absolute", top: "50%", left: "50%" }}
                 />
+                <label htmlFor="username" className="visually-hidden">
+                  Username
+                </label>
                 <input
                   type="text"
                   placeholder="Username"
                   name="username"
                   onChange={handleInputChange}
                   value={formData.username}
+                  autoComplete="username"
+                  required
                 />
+                <label htmlFor="email" className="visually-hidden">
+                  Email
+                </label>
                 <input
                   type="email"
                   placeholder="Email"
@@ -178,19 +196,29 @@ const LoginSignupModal = ({ isOpen, setOpen }) => {
                   onChange={handleInputChange}
                   value={formData.email}
                 />
+                <label htmlFor="password" className="visually-hidden">
+                  Password
+                </label>
                 <input
                   type="password"
                   placeholder="Password"
                   name="password"
                   onChange={handleInputChange}
                   value={formData.password}
+                  autoComplete="new-password"
+                  required
                 />
+                <label htmlFor="confirmPassword" className="visually-hidden">
+                  Confirm Password
+                </label>
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   name="confirmPassword"
                   onChange={handleInputChange}
                   value={formData.confirmPassword}
+                  autoComplete="new-password"
+                  required
                 />
                 <button type="submit">Sign Up</button>
               </form>
