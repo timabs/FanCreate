@@ -41,6 +41,11 @@
   animation: fadeOut 1s linear 2s 1;
 }
 
+.done-add-button {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
 @keyframes fadeOut {
   from {
     opacity: 1;

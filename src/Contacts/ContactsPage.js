@@ -201,16 +201,7 @@ export default function ContactsPage() {
         style={{ width: "25%", position: "absolute", bottom: "2%" }}
         onClick={() => debouncedHandleDone()}
       >
-        <span
-          className="text-dark"
-          style={{
-            fontFamily: "Roboto",
-            fontWeight: "bold",
-            fontSize: "1.25vw",
-          }}
-        >
-          Done
-        </span>
+        <span className="text-dark done-add-button">Done</span>
       </Button>
       <div
         className={`contact-added bg-success ${

@@ -163,7 +163,7 @@ function ChatWrapper() {
 
 function RightSidebar() {
   const dispatch = useDispatch();
-  const { triggerCapture } = useContext(ChatContext);
+  const { triggerCapture, imgsDownloading } = useContext(ChatContext);
   const activeScreen = useActiveScreen();
   const toggleScreen = (screenName) => {
     if (activeScreen !== screenName) {
@@ -182,7 +182,9 @@ function RightSidebar() {
       style={{ paddingLeft: "0.5rem", justifyItems: "center" }}
     >
       <i
-        className="fa-solid fa-download mb-2"
+        className={`fa-solid fa-download mb-2 ${
+          imgsDownloading ? "bounce" : ""
+        }`}
         role="button"
         onClick={triggerCapture}
       ></i>
