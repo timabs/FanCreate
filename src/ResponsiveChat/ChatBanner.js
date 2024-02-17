@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 import useActiveConvo from "../CustomHooks/activeConvosHooks";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import "./ChatBanner.css";
 import SystemDetailsBar from "./SystemDetails/SystemDetails";
 import { useDispatch } from "react-redux";
@@ -124,14 +119,15 @@ export default function ChatBanner() {
                 : ""}
             </span>
           ))}
-          <FontAwesomeIcon
-            icon={faChevronRight}
+          <img
+            src="/chev-left.png"
+            aria-hidden="true"
             className="to-gc-info"
             role="button"
             onClick={() => {
-              dispatch(setActiveScreen("group-chat"));
+              dispatch(setActiveScreen("group=chat"));
             }}
-          />
+          ></img>
         </div>
       ) : pfpEligibleUsers.length === 1 ? (
         <div className="chat-name" style={{ marginLeft: "unset" }}>
