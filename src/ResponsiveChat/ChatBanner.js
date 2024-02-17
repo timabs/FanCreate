@@ -93,14 +93,23 @@ export default function ChatBanner() {
       {gcName ? (
         <div className="chat-name">
           {gcName}
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faChevronRight}
             className="to-gc-info"
             role="button"
             onClick={() => {
               dispatch(setActiveScreen("group-chat"));
             }}
-          />
+          /> */}
+          <img
+            src="/chev-left.png"
+            aria-hidden="true"
+            className="to-gc-info"
+            role="button"
+            onClick={() => {
+              dispatch(setActiveScreen("group=chat"));
+            }}
+          ></img>
         </div>
       ) : pfpEligibleUsers.length > 1 && pfpEligibleUsers.length < 4 ? (
         <div className="chat-name">

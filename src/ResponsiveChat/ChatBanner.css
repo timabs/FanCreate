@@ -7,4 +7,6 @@
 .to-gc-info {
   grid-row: 1;
   grid-column: 3;
+  transform: rotate(180deg);
+  width: 0.5rem;
 }
