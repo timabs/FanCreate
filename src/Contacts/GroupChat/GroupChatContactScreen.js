@@ -226,7 +226,7 @@ export default function GroupChat() {
           <h2 className="m-2 h3" style={{ fontWeight: "bold" }}>
             Members
           </h2>
-          <div className="m-2" style={{ overflow: "scroll" }}>
+          <div className="m-2">
             {activeConversation?.participants?.map((user, index) =>
               user._id === "1" ? null : (
                 <div className="gc-user-card mb-2" key={index}>
