@@ -35,12 +35,6 @@ export default function ChatBanner() {
         onClick={() => dispatch(setActiveScreen("messages"))}
         className="back-button"
       />
-      {/* <FontAwesomeIcon
-        icon={faChevronLeft}
-        className="back-button"
-        role="button"
-        onClick={() => dispatch(setActiveScreen("messages"))}
-      /> */}
       {gcPfp ? (
         <div className="d-flex flex-direction-row">
           <div className="banner-img-divs">
@@ -102,7 +96,7 @@ export default function ChatBanner() {
             className="to-gc-info"
             role="button"
             onClick={() => {
-              dispatch(setActiveScreen("group=chat"));
+              dispatch(setActiveScreen("group-chat"));
             }}
           ></img>
         </div>
@@ -125,7 +119,7 @@ export default function ChatBanner() {
             className="to-gc-info"
             role="button"
             onClick={() => {
-              dispatch(setActiveScreen("group=chat"));
+              dispatch(setActiveScreen("group-chat"));
             }}
           ></img>
         </div>
