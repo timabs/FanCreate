@@ -145,7 +145,7 @@ export function NavBar() {
             </div>
             <div
               className="info-card"
-              style={{ opacity: `${infoOpen ? "1" : "0"}` }}
+              style={{ display: `${infoOpen ? "flex" : "none"}` }}
             >
               This site is still constantly being worked on but I am just one
               developer :) If you find any bugs, please don't hesitate to use
