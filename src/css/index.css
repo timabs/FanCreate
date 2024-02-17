@@ -185,11 +185,36 @@ input[type="file"] {
   align-items: center;
   height: 100%;
   margin-bottom: 0.5rem;
-  overflow: auto;
 }
 .users-extension > .text-icon-div {
   border: 2px solid transparent;
   border-radius: 0.5rem;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+body ::-webkit-scrollbar {
+  display: block;
+  border-radius: 1rem;
+  width: 3px !important;
+  z-index: 1;
+}
+body ::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+body ::-webkit-scrollbar-thumb {
+  background-color: #bec4c8;
+  border-right: none;
+  border-left: none;
+  border-radius: 3px;
+}
+body ::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 10px;
+}
+body ::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 15px;
 }
 .users-extension > .text-icon-div.select {
   animation: select 2s infinite;

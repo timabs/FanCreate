@@ -1,6 +1,7 @@
 .group-chat-form {
   background-color: #f2f1f6;
   z-index: 5;
+  overflow: auto;
 }
 .fa-pen-to-square,
 .fa-cloud-arrow-up {
