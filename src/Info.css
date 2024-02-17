@@ -1,0 +1,12 @@
+.info-p-wrap {
+  width: 50%;
+  margin: 0 auto;
+  padding-block: 2%;
+}
+
+.info-p {
+  font-weight: 400;
+}
+.info-headers {
+  font-size: 2rem;
+}

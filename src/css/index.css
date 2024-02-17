@@ -363,10 +363,64 @@ input[type="file"] {
   height: 1px;
   overflow: hidden;
 }
+.info-div {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 5%;
+  top: 2%;
+  background-color: var(--dark);
+  color: var(--info);
+  border-radius: 50%;
+  font-weight: 500;
+  font-size: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  font-style: italic;
+  padding-right: 0.25rem;
+}
+.info-div:hover {
+  cursor: pointer;
+}
+.info-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  right: 6%;
+  top: 4%;
+  width: 500px;
+  height: fit-content;
+  border: 2px solid var(--warning);
+  z-index: 50;
+  background-color: var(--info);
+  color: #350968;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2rem;
+  padding: 1.25rem;
+  font-size: 1.25rem;
+  border-radius: 0.75rem;
+  transition: all 150ms ease-in-out;
+}
+#known-issues {
+  text-decoration: underline;
+  color: var(--dark);
+}
+#known-issues:hover {
+  cursor: pointer;
+}
 @media (max-width: 576px) {
   .pfp-div {
     width: 7.5rem;
     height: 7.5rem;
+  }
+  .info-card {
+    width: 100%;
+    right: 0;
+    top: 5%;
   }
 }
 

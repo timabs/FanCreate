@@ -1,6 +1,7 @@
 //react redux
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -34,10 +35,14 @@ import GroupChat from "./Contacts/GroupChat/GroupChatContactScreen";
 import Footer from "./GeneralComponents/Footer/Footer";
 import ContactPage from "./GeneralComponents/ContactMe/ContactMePage";
 import HomePage from "./GeneralComponents/HomePage/HomePage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import InfoPage from "./Info";
 const apiUrl = "https://fancreate-backend.onrender.com";
 
 export function NavBar() {
   const [isOpen, setOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 560);
   const isGlobalLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const username = useSelector((state) => state.auth.username);
@@ -135,6 +140,24 @@ export function NavBar() {
             >
               Open Beta
             </i>
+            <div className="info-div" onClick={() => setInfoOpen(!infoOpen)}>
+              i
+            </div>
+            <div
+              className="info-card"
+              style={{ opacity: `${infoOpen ? "1" : "0"}` }}
+            >
+              This site is still constantly being worked on but I am just one
+              developer :) If you find any bugs, please don't hesitate to use
+              the contact page or email at morseylane@gmail.com. I still plan on
+              adding the social media and home/lock screens/notification
+              generators. Eventually I want to make a standalone downloadable
+              mobile app but that's a long term goal as it's a completely
+              separate skillset.{" "}
+              <Link to="/info" id="known-issues">
+                Known Issues as of 2/17/24
+              </Link>
+            </div>
           </h1>
 
           <LoginSignupModal isOpen={isOpen} setOpen={setOpen} />
@@ -286,6 +309,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/info" element={<InfoPage />} />
               </Routes>
               <Footer />
             </ChatProvider>
