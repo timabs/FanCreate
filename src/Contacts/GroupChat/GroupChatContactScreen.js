@@ -226,11 +226,14 @@ export default function GroupChat() {
           <h2 className="m-2 h3" style={{ fontWeight: "bold" }}>
             Members
           </h2>
-          <div className="m-2">
+          <div className="m-2" style={{ overflow: "scroll" }}>
             {activeConversation?.participants?.map((user, index) =>
               user._id === "1" ? null : (
                 <div className="gc-user-card mb-2" key={index}>
-                  <div className="pfp-div">
+                  <div
+                    className="pfp-div"
+                    style={{ width: "3rem", height: "3rem" }}
+                  >
                     <img src={user.pfp} alt="user profile pic"></img>
                   </div>
                   <span>

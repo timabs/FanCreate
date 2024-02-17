@@ -82,14 +82,6 @@ export default function ChatBanner() {
       {gcName ? (
         <div className="chat-name">
           {gcName}
-          {/* <FontAwesomeIcon
-            icon={faChevronRight}
-            className="to-gc-info"
-            role="button"
-            onClick={() => {
-              dispatch(setActiveScreen("group-chat"));
-            }}
-          /> */}
           <img
             src="/chev-left.png"
             aria-hidden="true"
@@ -130,6 +122,15 @@ export default function ChatBanner() {
       ) : (
         <div className="chat-name" style={{ marginLeft: "unset" }}>
           <span>{pfpEligibleUsers.length} people</span>
+          <img
+            src="/chev-left.png"
+            aria-hidden="true"
+            className="to-gc-info"
+            role="button"
+            onClick={() => {
+              dispatch(setActiveScreen("group-chat"));
+            }}
+          ></img>
         </div>
       )}
     </div>
