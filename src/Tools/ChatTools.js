@@ -8,6 +8,7 @@ import {
   setOpacity,
   updateSysDetails,
   updateBackgroundImg,
+  setDateVis,
 } from "../redux/chattools";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
@@ -125,15 +126,17 @@ export default function ChatTools() {
   const backgroundImg = useSelector((state) => state.chat.backgroundImg);
   const imgSaved = useSelector((state) => state.chat.imgSaved);
   const activeTab = useSelector((state) => state.active.activeTab);
+
   const handleYouBubble = (e) => {
     const selectedColor = e.target.value || e.target.dataset.value;
     dispatch(setYouBubbleColor(selectedColor));
   };
   const handleDate = (dateState) => {
-    const dates = document.querySelectorAll(".date");
-    dates.forEach((date) => {
-      date.style.setProperty("opacity", dateState === "on" ? 1 : 0);
-    });
+    try {
+      dispatch(setDateVis(dateState));
+    } catch (error) {
+      console.error(`Error setting date visibility: ${error}`);
+    }
   };
   const handleImgUpload = (imageURL, blob) => {
     setBgBlob(blob);
@@ -217,11 +220,11 @@ export default function ChatTools() {
             <Button
               className="options-btns primary"
               style={{ width: "250%" }}
-              onClick={() => handleDate("on")}
+              onClick={() => handleDate(true)}
             >
               Always On
             </Button>
-            <Button className="options-btns" onClick={() => handleDate("off")}>
+            <Button className="options-btns" onClick={() => handleDate(false)}>
               Hover
             </Button>
           </div>

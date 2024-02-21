@@ -17,6 +17,7 @@ const initialState = {
   cellSignal: 5,
   detailsUpdating: false,
   imgSaved: false,
+  dateVis: window.innerWidth <= 560,
 };
 
 export const updateBackgroundImg = createAsyncThunk(
@@ -102,6 +103,9 @@ const chatSlice = createSlice({
     setCellSignal(state, action) {
       state.cellSignal = action.payload;
     },
+    setDateVis(state, action) {
+      state.dateVis = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -132,5 +136,6 @@ export const {
   setTime,
   setWifi,
   setCellSignal,
+  setDateVis,
 } = chatSlice.actions;
 export default chatSlice.reducer;

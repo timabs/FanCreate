@@ -131,7 +131,7 @@ export default function MessagesScreen() {
               </div>
               <div className="line-2">
                 <p
-                  className="p-0 m-0"
+                  className="p-0 m-0 ellipsis"
                   style={{
                     opacity: "0.7",
                     color: "lightgray",
