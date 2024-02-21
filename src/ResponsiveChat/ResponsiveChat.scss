@@ -387,6 +387,9 @@ form.chat .message {
 .opacity-0 {
   pointer-events: none;
 }
+.opacity-none {
+  opacity: 0;
+}
 .edit-details > span {
   text-align: center;
   height: fit-content;
@@ -417,9 +420,9 @@ form.chat .message {
   white-space: nowrap;
   vertical-align: middle;
   color: #8b8b90;
-  opacity: 0;
   z-index: 4;
   margin-top: 0.35rem;
+  transition: all 150ms ease-in-out;
 }
 .chat-extension {
   display: flex;

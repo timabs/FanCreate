@@ -56,6 +56,7 @@ function Chat() {
   const backgroundImg = useSelector((state) => state.chat.backgroundImg);
   const imgIsUploading = useSelector((state) => state.chat.imgIsUploading);
   const opacity = useSelector((state) => state.chat.opacity);
+  const dateVis = useSelector((state) => state.chat.dateVis);
   const isEmojiPickerOpen = useSelector(
     (state) => state.chat.isEmojiPickerOpen
   );
@@ -342,7 +343,11 @@ function Chat() {
                   {message.imgInMsg ? <div className="sent-reply"></div> : null}
                 </span>
               </div>
-              <div className="date">{message?.time}</div>
+              <div
+                className={`date ${dateVis ? "opacity-100" : "opacity-none"}`}
+              >
+                {message?.time}
+              </div>
               <DefaultEmojis message={message} />
               <EditDetails
                 message={message}
