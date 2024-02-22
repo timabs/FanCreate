@@ -46,7 +46,7 @@ body {
 .bodysec {
   border-radius: 0.75rem;
   border: var(--warning) 1.5px solid;
-  box-shadow: 0px 0px 10px var(--secondary);
+  box-shadow: 0px 0px 5px var(--secondary);
 }
 .tools-col {
   position: relative;
@@ -185,12 +185,13 @@ input[type="file"] {
   align-items: center;
   height: 100%;
   margin-bottom: 0.5rem;
+  width: fit-content;
 }
 .users-extension > .text-icon-div {
   border: 2px solid transparent;
-  border-radius: 0.5rem;
   overflow-y: scroll;
   max-height: 500px;
+  padding: 0.25rem;
 }
 
 body ::-webkit-scrollbar {
@@ -249,6 +250,7 @@ body ::-webkit-scrollbar-track-piece:start {
 .button-div {
   display: grid;
   grid-template-rows: 50% 50%;
+  margin-right: 0.25rem;
 }
 .button-div > .portraits {
   margin: unset;
@@ -313,7 +315,7 @@ body ::-webkit-scrollbar-track-piece:start {
 }
 .speaker-indicator {
   border: 1.5px solid var(--danger);
-  box-shadow: 0px 0px 4px 1px #7132bf;
+  box-shadow: 0px 0px 3px 1px #7132bf;
 }
 
 .custom-checkbox-input {

@@ -242,7 +242,10 @@ export default function ActiveUsers() {
           </div>
         </div>
       </Col>
-      <div className="d-flex" style={{ flexDirection: "column" }}>
+      <div
+        className="d-flex"
+        style={{ flexDirection: "column", marginRight: "0.25rem" }}
+      >
         <div
           ref={chattersIcon}
           className="bg-dark d-flex justify-content-center align-items-center users-icon-div"
