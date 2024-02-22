@@ -120,7 +120,10 @@ export default function ChatBanner() {
           <span>{pfpEligibleUsers[0]?.first}</span>
         </div>
       ) : (
-        <div className="chat-name" style={{ marginLeft: "unset" }}>
+        <div
+          className="chat-name"
+          style={{ marginLeft: "unset", height: "60%" }}
+        >
           <span>{pfpEligibleUsers.length} people</span>
           <img
             src="/chev-left.png"
