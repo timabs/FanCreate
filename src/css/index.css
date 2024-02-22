@@ -46,7 +46,7 @@ body {
 .bodysec {
   border-radius: 0.75rem;
   border: var(--warning) 1.5px solid;
-  box-shadow: 0px 0px 10px var(--secondary);
+  box-shadow: 0px 0px 5px var(--secondary);
 }
 .tools-col {
   position: relative;
