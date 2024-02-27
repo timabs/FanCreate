@@ -326,7 +326,6 @@ body ::-webkit-scrollbar-track-piece:start {
 }
 
 .custom-checkbox-label {
-  animation: pulse 2s infinite;
   position: relative;
   cursor: pointer;
   width: 16px;

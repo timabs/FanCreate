@@ -23,7 +23,6 @@
   cursor: pointer;
 }
 .contact-button {
-  animation: pulse 2s infinite;
   width: 20px;
   height: 20px;
 }
