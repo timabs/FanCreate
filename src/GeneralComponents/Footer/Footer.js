@@ -14,6 +14,17 @@ export default function Footer() {
           Contact/Report a bug
         </Link>{" "}
         <span className="mt-3">|</span>
+        <Link to="/tos" className="mt-3 footer-labels">
+          Terms of Service
+        </Link>{" "}
+        <span className="mt-3">|</span>
+        <Link to="/accessibility" className="mt-3 footer-labels">
+          Accessibility
+        </Link>{" "}
+        <span className="mt-3">|</span>
+        <Link to="/privpolicy" className="mt-3 footer-labels">
+          Privacy Policy
+        </Link>{" "}
       </div>
       <p></p>
       <p></p>
