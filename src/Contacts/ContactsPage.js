@@ -67,7 +67,6 @@ export default function ContactsPage() {
     };
     const selected = Array.from(checkedIndices).map((index) => contacts[index]);
     const allParticipants = [initialParticipant, ...selected];
-    console.log(allParticipants);
     let newConvoId;
     let updatedParticipants =
       addUsersMode === "add-to-existing"
