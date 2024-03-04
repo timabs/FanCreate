@@ -59,7 +59,15 @@ export default function ContactsPage() {
   }, [checkedIndices]);
 
   const handleDone = async () => {
+    const initialParticipant = {
+      first: "me",
+      pfp: null,
+      defaultTexter: true,
+      _id: "1",
+    };
     const selected = Array.from(checkedIndices).map((index) => contacts[index]);
+    const allParticipants = [initialParticipant, ...selected];
+    console.log(allParticipants);
     let newConvoId;
     let updatedParticipants =
       addUsersMode === "add-to-existing"
@@ -69,9 +77,7 @@ export default function ContactsPage() {
     if (!activeConversation || addUsersMode !== "add-to-existing") {
       const newConvoResponse = await dispatch(
         createConversation({
-          participants: [
-            { first: "me", pfp: null, defaultTexter: true, _id: "1" },
-          ],
+          participants: allParticipants,
         })
       );
 
@@ -86,22 +92,25 @@ export default function ContactsPage() {
     }
 
     // Wait for all addUserToConvo dispatches to complete
-    await Promise.all(
-      selected.map(async (contact) => {
-        if (!updatedParticipants.has(contact._id)) {
-          await dispatch(
-            addUserToConvo({
-              conversationId:
-                addUsersMode === "add-to-existing"
-                  ? activeConversation?._id
-                  : newConvoId,
-              contact: contact,
-            })
-          );
-          updatedParticipants.add(contact._id);
-        }
-      })
-    );
+    if (addUsersMode === "add-to-existing") {
+      await Promise.all(
+        selected.map(async (contact) => {
+          if (!updatedParticipants.has(contact._id)) {
+            await dispatch(
+              addUserToConvo({
+                conversationId:
+                  addUsersMode === "add-to-existing"
+                    ? activeConversation?._id
+                    : newConvoId,
+                contact: contact,
+              })
+            );
+            updatedParticipants.add(contact._id);
+          }
+        })
+      );
+    }
+
     setCheckedIndices(new Set());
     dispatch(clearRecentlyEdited());
     dispatch(clearContactToEdit());
