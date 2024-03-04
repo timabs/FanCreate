@@ -81,7 +81,9 @@ export default function ActiveUsers() {
     switch (e.target.id) {
       case "plus":
         dispatch(setActiveScreen("contacts"));
-        dispatch(changeAddUserMode("add-to-existing"));
+        if (activeConvo) {
+          dispatch(changeAddUserMode("add-to-existing"));
+        }
         break;
       case "delete":
         dispatch(setActiveScreen(null));

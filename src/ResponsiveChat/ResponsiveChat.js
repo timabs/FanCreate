@@ -363,6 +363,13 @@ function Chat() {
         } image-upload`}
         style={{ backgroundColor: "#e2e2e2" }}
       >
+        <p
+          className={`${imgPreviewOpen ? "opacity-1" : "opacity-0"} ${
+            imgInMsg ? "opacity-0" : "opacity-1"
+          } position-absolute`}
+        >
+          Please select an image
+        </p>
         {imgInMsg ? (
           <div style={{ position: "relative" }}>
             <div>
