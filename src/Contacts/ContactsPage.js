@@ -116,7 +116,7 @@ export default function ContactsPage() {
     dispatch(setActiveScreen(null));
     dispatch(changeAddUserMode(null));
   };
-  const debouncedHandleDone = useDebounce(handleDone, 500);
+  const debouncedHandleDone = useDebounce(handleDone, 1000);
   const openAddContact = () => {
     dispatch(setActiveScreen("add-contact"));
     dispatch(clearContactToEdit());
