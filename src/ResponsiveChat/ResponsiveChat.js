@@ -80,12 +80,15 @@ function Chat() {
         })
       );
       if (withMessage) {
-        await dispatch(
+        const newMessageRes = await dispatch(
           createMessage({
             conversationId: newConversationId,
             messageObj: newMessage,
           })
         );
+        if (newMessageRes.payload) {
+          setMessages([...currentMessages, newMessageRes.payload]);
+        }
       }
     }
   }
@@ -131,8 +134,8 @@ function Chat() {
             messageObj: newMessage,
           })
         );
+        setMessages([...currentMessages, newMessage]);
       }
-      setMessages([...currentMessages, newMessage]);
       setMessageInput("");
       if (messageContainerRef.current) {
         messageContainerRef.current.scrollTop =
