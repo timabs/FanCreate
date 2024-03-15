@@ -64,6 +64,35 @@ function Chat() {
   const convosLoading = useSelector((state) => state.messages.convosLoading);
   const oneMessageById = useSelector((state) => state.messages.oneMessageById);
 
+  async function convoCreationWithRes(withMessage = false, newMessage) {
+    const createConvoResponse = await dispatch(
+      createConversation({
+        participants: [
+          { first: "me", pfp: null, defaultTexter: true, _id: "1" },
+        ],
+      })
+    );
+    if (createConversation.fulfilled.match(createConvoResponse)) {
+      const newConversationId = createConvoResponse.payload._id;
+      await dispatch(
+        setActiveConvo({
+          conversationId: newConversationId,
+        })
+      );
+      if (withMessage) {
+        const newMessageRes = await dispatch(
+          createMessage({
+            conversationId: newConversationId,
+            messageObj: newMessage,
+          })
+        );
+        if (newMessageRes.payload) {
+          setMessages([...currentMessages, newMessageRes.payload]);
+        }
+      }
+    }
+  }
+
   const setCombinedRefs = useCallback(
     (node) => {
       messageContainerRef.current = node;
@@ -97,28 +126,7 @@ function Chat() {
         replyingTo: oneMessageById ? oneMessageById : null,
       };
       if (!activeConversation) {
-        const createConvoResponse = await dispatch(
-          createConversation({
-            participants: [
-              { first: "me", pfp: null, defaultTexter: true, _id: "1" },
-            ],
-          })
-        );
-        if (createConversation.fulfilled.match(createConvoResponse)) {
-          const newConversationId = createConvoResponse.payload._id;
-          await dispatch(
-            setActiveConvo({
-              conversationId: newConversationId,
-            })
-          );
-
-          dispatch(
-            createMessage({
-              conversationId: newConversationId,
-              messageObj: newMessage,
-            })
-          );
-        }
+        await convoCreationWithRes(true, newMessage);
       } else {
         dispatch(
           createMessage({
@@ -126,8 +134,8 @@ function Chat() {
             messageObj: newMessage,
           })
         );
+        setMessages([...currentMessages, newMessage]);
       }
-      setMessages([...currentMessages, newMessage]);
       setMessageInput("");
       if (messageContainerRef.current) {
         messageContainerRef.current.scrollTop =
@@ -174,7 +182,7 @@ function Chat() {
       document.body.removeEventListener("click", (e) => handleClickOutside(e));
     };
   }, [targetToEditId, isEmojiPickerOpen, dispatch]);
-  //on load, fetch data. fix duplicate renders
+
   useEffect(() => {
     async function fetchData() {
       await dispatch(fetchConversations());
@@ -184,6 +192,8 @@ function Chat() {
           const convoId = fetchActiveRes.payload.activeConversationId;
           dispatch(fetchMessages(convoId));
           dispatch(fetchParticipants(convoId));
+        } else {
+          convoCreationWithRes(false);
         }
       }
     }

@@ -39,6 +39,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import InfoPage from "./Info";
 import AccessibilityPage from "./GeneralComponents/Accessibility";
+import TosPage from "./GeneralComponents/Tos";
+import PrivacyPolicy from "./GeneralComponents/Privacy";
 const apiUrl = "https://fancreate-backend.onrender.com";
 
 export function NavBar() {
@@ -312,6 +314,8 @@ function App() {
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/info" element={<InfoPage />} />
                 <Route path="/accessibility" element={<AccessibilityPage />} />
+                <Route path="/tos" element={<TosPage />} />
+                <Route path="/privpolicy" element={<PrivacyPolicy />} />
               </Routes>
               <Footer />
             </ChatProvider>
