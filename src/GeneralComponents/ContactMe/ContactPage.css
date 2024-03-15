@@ -8,6 +8,15 @@
   align-self: center;
   margin: 0 auto;
 }
+.priv-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50%;
+  align-self: center;
+  margin: 0 auto;
+}
 .main-title-contact {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
