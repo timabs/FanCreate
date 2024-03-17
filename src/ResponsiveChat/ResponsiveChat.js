@@ -35,6 +35,7 @@ import { Emoji } from "emoji-picker-react";
 import { setEmojiPickerOpen } from "../redux/chattools";
 import DefaultEmojis from "./DefaultEmojis";
 import { setActiveScreen } from "../redux/active";
+import { clearContactToEdit, clearRecentlyEdited } from "../redux/contacts";
 // import GroupChat, {
 //   GroupChatContactScreen,
 // } from "../Contacts/GroupChat/GroupChatContactScreen";
@@ -64,6 +65,7 @@ function Chat() {
   const targetToEditId = useSelector((state) => state.messages.targetToEditId);
   const convosLoading = useSelector((state) => state.messages.convosLoading);
   const oneMessageById = useSelector((state) => state.messages.oneMessageById);
+  const activeScreen = useSelector((state) => state.active.activeScreen);
 
   async function convoCreationWithRes(withMessage = false, newMessage) {
     const createConvoResponse = await dispatch(
@@ -255,6 +257,17 @@ function Chat() {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, []);
+
+  const handlePlusButton = () => {
+    if (activeScreen === "contacts") {
+      dispatch(setActiveScreen("add-contact"));
+      dispatch(clearContactToEdit());
+      dispatch(clearRecentlyEdited());
+    }
+    if (activeScreen === "messages") {
+      dispatch(setActiveScreen("contacts"));
+    }
+  };
 
   return (
     <form
@@ -471,6 +484,19 @@ function Chat() {
           onChange={(e) => setMessageInput(e.target.value)}
         />
         <input type="submit" value="Send" className="submit-msg" />
+      </div>
+
+      <div
+        className={`${
+          activeScreen === null ? "d-none" : "d-flex"
+        } justify-content-center align-items-center new-msg-div`}
+        onClick={() => handlePlusButton()}
+      >
+        <img
+          src="/plus-big.png"
+          alt="new message icon"
+          className="new-msg"
+        ></img>
       </div>
     </form>
   );

@@ -156,16 +156,6 @@ export default function MessagesScreen() {
           </Row>
         );
       })}
-      <div
-        className="d-flex justify-content-center align-items-center new-msg-div"
-        onClick={handleClick}
-      >
-        <img
-          src="/plus-big.png"
-          alt="new message icon"
-          className="new-msg"
-        ></img>
-      </div>
     </div>
   );
 }

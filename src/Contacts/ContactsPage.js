@@ -117,11 +117,7 @@ export default function ContactsPage() {
     dispatch(changeAddUserMode(null));
   };
   const debouncedHandleDone = useDebounce(handleDone, 1000);
-  const openAddContact = () => {
-    dispatch(setActiveScreen("add-contact"));
-    dispatch(clearContactToEdit());
-    dispatch(clearRecentlyEdited());
-  };
+
   const handleDelete = (contact) => {
     dispatch(deleteContact({ contactId: contact._id }));
     const pfpId = getCloudinaryImgId(contact.pfp);
@@ -217,16 +213,6 @@ export default function ContactsPage() {
         }`}
       >
         Contact Added!
-      </div>
-      <div
-        className="d-flex justify-content-center align-items-center new-msg-div"
-        onClick={() => openAddContact()}
-      >
-        <img
-          src="/plus-big.png"
-          alt="new message icon"
-          className="new-msg"
-        ></img>
       </div>
     </div>
   );
