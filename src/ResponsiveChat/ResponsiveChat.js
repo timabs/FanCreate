@@ -34,6 +34,7 @@ import { useDebounce } from "../CustomHooks/useDebounce";
 import { Emoji } from "emoji-picker-react";
 import { setEmojiPickerOpen } from "../redux/chattools";
 import DefaultEmojis from "./DefaultEmojis";
+import { setActiveScreen } from "../redux/active";
 // import GroupChat, {
 //   GroupChatContactScreen,
 // } from "../Contacts/GroupChat/GroupChatContactScreen";

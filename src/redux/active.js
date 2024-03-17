@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const activeSlice = createSlice({
   name: "active",
   initialState: {
-    activeScreen: null,
+    activeScreen: "messages",
     activeTab: "chat",
   },
   reducers: {
