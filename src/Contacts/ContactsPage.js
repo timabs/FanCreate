@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -31,6 +31,7 @@ export default function ContactsPage() {
   //state for checked contacts
   const [areAnyChecked, setAnyChecked] = useState(false);
   const [checkedIndices, setCheckedIndices] = useState(new Set());
+  const toggleSelectAllRef = useRef(null);
   //hook to get actives
   const activeConversation = useActiveConvo();
   const checkLoggedIn = useLoggedIn();
@@ -50,6 +51,24 @@ export default function ContactsPage() {
       }
       return newIndices;
     });
+  };
+
+  const selectAll = () => {
+    const allIndices = new Set();
+    for (let i = 0; i < contacts?.length; i++) {
+      allIndices.add(i);
+    }
+    setCheckedIndices(allIndices);
+  };
+  const deselectAll = () => {
+    setCheckedIndices(new Set());
+  };
+  const toggleSelectAll = () => {
+    if (toggleSelectAllRef.current?.checked) {
+      selectAll();
+    } else {
+      deselectAll();
+    }
   };
   useEffect(() => {
     dispatch(fetchContacts());
@@ -127,7 +146,6 @@ export default function ContactsPage() {
     dispatch(setContactToEdit(contact));
     dispatch(setActiveScreen("add-contact"));
   };
-
   return (
     <div className={contactsClass}>
       <Row>
@@ -138,6 +156,45 @@ export default function ContactsPage() {
           Contacts
         </h2>
       </Row>
+      {/*Select all button */}
+      <div className={`${areAnyChecked ? "d-flex" : "d-none"} select-all-div`}>
+        <span
+          style={{
+            height: "32px",
+            width: "32px",
+            position: "relative",
+          }}
+          className={` ${
+            areAnyChecked ? "d-flex" : "d-none"
+          } contact-button-wrapper flex-column`}
+        >
+          <input
+            id="select-all-check"
+            type="checkbox"
+            className={`custom-checkbox-input`}
+            onChange={() => toggleSelectAll()}
+            ref={toggleSelectAllRef}
+          />
+          <label
+            htmlFor={`select-all-check`}
+            className="custom-checkbox-label"
+            style={{ border: "#3204a3 1.75px solid" }}
+          ></label>
+          <div
+            style={{
+              height: "16px",
+              width: "16px",
+              display: "flex",
+              fontSize: "12px",
+              color: "#3204a3",
+              fontWeight: "bold",
+            }}
+          >
+            All
+          </div>
+        </span>
+      </div>
+
       {contacts?.map((contact, index) => (
         <Row
           key={index}
@@ -217,3 +274,24 @@ export default function ContactsPage() {
     </div>
   );
 }
+
+// function CheckboxCustom(){
+//   return (
+//     <span
+//       style={{ height: "16px", width: "16px", position: "relative" }}
+//       className="contact-button-wrapper"
+//     >
+//       <input
+//         type="checkbox"
+//         id={`custom-checkbox-${index}`}
+//         className="custom-checkbox-input"
+//         onChange={() => handleCheckChange(index)}
+//         checked={checkedIndices.has(index)}
+//       />
+//       <label
+//         htmlFor={`custom-checkbox-${index}`}
+//         className="custom-checkbox-label"
+//       ></label>
+//     </span>
+//   );
+// }
