@@ -5,12 +5,10 @@ export default function InfoPage() {
     <div className="info-p-wrap">
       <p className="info-p">
         <span className="info-headers">Known bugs:</span> <br />
-        - Can't save a background image when there's no active conversation
         <br />
         - Weird cut offs when using bulk download for chats
         <br />
         <span className="info-headers">Coming soon:</span>
-        <br /> - Accessibility, Privacy Policy, Terms
         <br />
         - ? for tutorial <br />
         - Change Password modal <br />
