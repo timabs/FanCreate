@@ -158,7 +158,7 @@ export function NavBar() {
               mobile app but that's a long term goal as it's a completely
               separate skillset.{" "}
               <Link to="/info" id="known-issues">
-                Known Issues as of 2/17/24
+                Known Issues as of 4/25/24
               </Link>
             </div>
           </h1>
